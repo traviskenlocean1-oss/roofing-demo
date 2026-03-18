@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Summit Roofing Co — Built to Last</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Lottie -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+<!-- GSAP + ScrollTrigger + SplitText -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- Lenis Smooth Scroll -->
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+<style>
+/* ===========================
+   RESET & BASE
+=========================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --slate: #1B2A3B;
+  --slate-dark: #0f1c28;
+  --slate-mid: #243548;
+  --orange: #E8601C;
+  --orange-light: #f47338;
+  --white: #FFFFFF;
+  --offwhite: #F8F5F0;
+  --gray: #8a9ab0;
+  --gray-light: #c5cfd9;
+  --font-head: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--slate-dark);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ===========================
+   CUSTOM CURSOR
+=========================== */
+#cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--orange);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: normal;
+}
+#cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 1.5px solid rgba(232,96,28,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+}
+body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 20px; height: 20px; background: var(--orange-light); }
+body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 60px; height: 60px; border-color: var(--orange); }
+
+/* ===========================
+   NAV
+=========================== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(15,28,40,0.95), transparent);
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter 0.4s, background 0.4s;
+}
+nav.scrolled {
+  background: rgba(15,28,40,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(232,96,28,0.15);
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--orange); }
+.nav-cta {
+  background: var(--orange);
+  color: var(--white) !important;
+  padding: 10px 24px !important;
+  border-radius: 3px;
+  font-weight: 700 !important;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--orange-light) !important; transform: translateY(-2px); }
+
+/* ===========================
+   HERO
+=========================== */
+#hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, var(--slate-dark) 0%, #162232 60%, #0d1920 100%);
+}
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 60px;
+  max-width: 780px;
+}
+
+.hero-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-headline {
+  font-family: var(--font-head);
+  font-size: clamp(4.5rem, 9vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+.hero-headline .line { overflow: hidden; display: block; }
+.hero-headline .word { display: inline-block; transform: translateY(110%); }
+.hero-headline .accent { color: var(--orange); }
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--gray-light);
+  max-width: 440px;
+  margin-bottom: 44px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.btn-primary, .btn-secondary {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 3px;
+  border: none;
+  cursor: none;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--orange-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+.btn-primary:hover::after { transform: scaleX(1); }
+.btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 16px 40px rgba(232,96,28,0.4); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.btn-secondary:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-3px); }
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+}
+.scroll-line {
+  width: 50px;
+  height: 1px;
+  background: var(--orange);
+  transform-origin: left;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(0.4); opacity: 0.4; }
+}
+.scroll-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.hero-badge {
+  position: absolute;
+  right: 60px;
+  bottom: 60px;
+  z-index: 10;
+  text-align: center;
+  opacity: 0;
+}
+.hero-badge-ring {
+  width: 110px; height: 110px;
+  border: 1.5px solid rgba(232,96,28,0.4);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: badgeSpin 20s linear infinite;
+}
+@keyframes badgeSpin {
+  to { transform: rotate(360deg); }
+}
+.hero-badge-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: badgeSpin 20s linear reverse infinite;
+}
+.hero-badge-num {
+  font-family: var(--font-head);
+  font-size: 2.4rem;
+  color: var(--orange);
+  line-height: 1;
+}
+.hero-badge-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+}
+
+/* ===========================
+   MARQUEE TICKER
+=========================== */
+.marquee-bar {
+  background: var(--orange);
+  padding: 13px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 5;
+}
+.marquee-track {
+  display: inline-flex;
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-item {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: 0 44px;
+  display: flex;
+  align-items: center;
+  gap: 44px;
+}
+.marquee-item::after {
+  content: '◆';
+  font-size: 0.5rem;
+  opacity: 0.7;
+}
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===========================
+   TRUST BAR
+=========================== */
+.trust-bar {
+  background: var(--slate-mid);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 60px;
+}
+.trust-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+.trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.trust-num {
+  font-family: var(--font-head);
+  font-size: 3.2rem;
+  color: var(--orange);
+  line-height: 1;
+}
+.trust-num-suffix {
+  font-family: var(--font-head);
+  font-size: 3.2rem;
+  color: var(--orange);
+}
+.trust-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+/* ===========================
+   SECTION BASE
+=========================== */
+section {
+  position: relative;
+  overflow: hidden;
+}
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--orange);
+}
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.section-sub {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--gray-light);
+  max-width: 500px;
+}
+
+/* ===========================
+   SERVICES
+=========================== */
+#services {
+  background: var(--offwhite);
+  padding: 120px 60px;
+}
+#services .section-label { color: var(--orange); }
+#services .section-label::before { background: var(--orange); }
+#services .section-title { color: var(--slate); }
+#services .section-sub { color: #556070; }
+
+.services-header {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+.services-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.service-card {
+  background: var(--white);
+  border-radius: 6px;
+  padding: 44px 36px;
+  border: 1px solid rgba(27,42,59,0.08);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+  cursor: none;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(27,42,59,0.12); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-lottie {
+  width: 72px; height: 72px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  background: rgba(232,96,28,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.service-card h3 {
+  font-family: var(--font-head);
+  font-size: 1.7rem;
+  letter-spacing: 0.03em;
+  color: var(--slate);
+  margin-bottom: 12px;
+}
+.service-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #667788;
+}
+.service-num {
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  font-family: var(--font-head);
+  font-size: 4rem;
+  color: rgba(27,42,59,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ===========================
+   PROCESS
+=========================== */
+#process {
+  background: var(--slate);
+  padding: 120px 60px;
+}
+.process-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.process-header { margin-bottom: 80px; }
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 44px;
+  left: 60px;
+  right: 60px;
+  height: 1px;
+  background: rgba(232,96,28,0.3);
+  z-index: 0;
+}
+.process-step {
+  padding: 0 28px;
+  position: relative;
+  z-index: 1;
+}
+.step-dot {
+  width: 24px; height: 24px;
+  background: var(--orange);
+  border-radius: 50%;
+  margin-bottom: 32px;
+  position: relative;
+  border: 3px solid var(--slate);
+  box-shadow: 0 0 0 1px var(--orange);
+}
+.step-num {
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.step-title {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.step-desc {
+  font-size: 0.87rem;
+  line-height: 1.65;
+  color: var(--gray);
+}
+
+/* ===========================
+   PROJECTS
+=========================== */
+#projects {
+  background: var(--slate-dark);
+  padding: 120px 60px;
+}
+.projects-inner { max-width: 1200px; margin: 0 auto; }
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.project-card {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  cursor: none;
+}
+.project-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+.project-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  background: var(--slate-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--slate-mid) 0%, #1e3347 100%);
+  position: relative;
+  overflow: hidden;
+}
+.project-img-placeholder::after {
+  content: attr(data-label);
+  font-family: var(--font-head);
+  font-size: 5rem;
+  color: rgba(255,255,255,0.06);
+  letter-spacing: 0.05em;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,28,40,0.95) 0%, transparent 60%);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: background 0.4s;
+}
+.project-card:hover .project-overlay { background: linear-gradient(to top, rgba(15,28,40,0.98) 20%, rgba(15,28,40,0.3) 100%); }
+.project-card:hover .project-img-placeholder { transform: scale(1.04); }
+.project-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.project-name {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.project-loc {
+  font-size: 0.82rem;
+  color: var(--gray-light);
+}
+
+/* ===========================
+   TESTIMONIAL
+=========================== */
+#testimonials {
+  background: var(--orange);
+  padding: 100px 60px;
+  position: relative;
+  overflow: hidden;
+}
+#testimonials::before {
+  content: '"';
+  position: absolute;
+  top: -60px;
+  right: 60px;
+  font-family: var(--font-head);
+  font-size: 40rem;
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+  pointer-events: none;
+}
+.testimonials-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.testimonial-content blockquote {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+.testimonial-author { display: flex; align-items: center; gap: 16px; }
+.author-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.author-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--white);
+}
+.author-title {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+}
+.stars {
+  font-size: 1.1rem;
+  color: var(--white);
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.testimonial-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.t-stat {
+  padding: 28px 32px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.t-stat-num {
+  font-family: var(--font-head);
+  font-size: 3rem;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.t-stat-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+
+/* ===========================
+   CTA
+=========================== */
+#cta {
+  background: var(--slate-dark);
+  padding: 140px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#cta-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  opacity: 0.35;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.cta-title {
+  font-family: var(--font-head);
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.cta-title span { color: var(--orange); }
+.cta-sub {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--gray-light);
+  max-width: 520px;
+  margin: 0 auto 52px;
+}
+.cta-contact { display: flex; justify-content: center; gap: 12px; align-items: center; margin-top: 32px; }
+.cta-phone {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.cta-divider { width: 4px; height: 4px; background: var(--gray); border-radius: 50%; }
+.cta-email {
+  font-size: 0.9rem;
+  color: var(--gray-light);
+  text-decoration: none;
+}
+.cta-email:hover { color: var(--orange); }
+
+/* ===========================
+   FOOTER
+=========================== */
+footer {
+  background: var(--slate-mid);
+  padding: 60px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.footer-brand .logo {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.footer-brand .logo span { color: var(--orange); }
+.footer-brand p {
+  font-size: 0.87rem;
+  line-height: 1.65;
+  color: var(--gray);
+  max-width: 260px;
+}
+.footer-col h4 {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 0.87rem;
+  color: var(--gray-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--orange); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-bottom p {
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+.footer-license {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.license-badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  background: rgba(255,255,255,0.06);
+  padding: 5px 12px;
+  border-radius: 3px;
+}
+
+/* ===========================
+   ANIMATIONS & UTILITIES
+=========================== */
+.reveal { opacity: 0; transform: translateY(40px); }
+.fade-in { opacity: 0; }
+.slide-left { opacity: 0; transform: translateX(-40px); }
+.slide-right { opacity: 0; transform: translateX(40px); }
+
+/* Vanta overlay for secondary sections */
+.vanta-section { position: relative; }
+.vanta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.vanta-section > *:not(.vanta-bg) { position: relative; z-index: 1; }
+
+/* ===========================
+   LOADING SCREEN
+=========================== */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--slate-dark);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.loader-logo {
+  font-family: var(--font-head);
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+.loader-logo span { color: var(--orange); }
+.loader-bar-track {
+  width: 280px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%;
+  background: var(--orange);
+  width: 0%;
+  border-radius: 2px;
+  transition: width 0.05s linear;
+}
+.loader-percent {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--gray);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1024px) {
+  nav { padding: 18px 32px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 32px; }
+  .trust-inner { grid-template-columns: repeat(2, 1fr); }
+  .services-header { grid-template-columns: 1fr; gap: 20px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .process-steps::before { display: none; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card:first-child { grid-row: span 1; aspect-ratio: 16/10; }
+  .testimonials-inner { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  #services, #process, #projects, #testimonials, #cta { padding: 80px 32px; }
+  footer { padding: 60px 32px; }
+}
+@media (max-width: 640px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-headline { font-size: clamp(3.5rem, 14vw, 5rem); }
+  .hero-badge { display: none; }
+  .projects-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .cta-contact { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">SUMMIT<span>.</span></div>
+  <div class="loader-bar-track"><div class="loader-bar" id="loader-bar"></div></div>
+  <div class="loader-percent" id="loader-percent">0%</div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">SUMMIT <span>ROOFING</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#cta" class="nav-cta">Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Licensed &amp; Insured — Serving the Region Since 2003</div>
+    <h1 class="hero-headline">
+      <span class="line"><span class="word">BUILT</span></span>
+      <span class="line"><span class="word">TO</span> <span class="word accent">LAST.</span></span>
+    </h1>
+    <p class="hero-sub">Summit Roofing Co delivers expert roofing installations, repairs, and replacements. Trusted by homeowners and businesses across the region.</p>
+    <div class="hero-buttons">
+      <a href="#cta" class="btn-primary magnetic">Get a Free Quote</a>
+      <a href="#projects" class="btn-secondary magnetic">See Our Work</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator" id="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to explore</span>
+  </div>
+
+  <div class="hero-badge" id="hero-badge">
+    <div class="hero-badge-ring">
+      <div class="hero-badge-inner">
+        <div class="hero-badge-num">20+</div>
+        <div class="hero-badge-label">Years</div>
+        <div class="hero-badge-label">Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARQUEE ========== -->
+<div class="marquee-bar">
+  <div class="marquee-track" id="marquee-track">
+    <!-- Items duplicated via JS -->
+  </div>
+</div>
+
+<!-- ========== TRUST BAR ========== -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-num" data-target="1400">0</div>
+      <div class="trust-label">Roofs Completed</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num" data-target="98">0</div>
+      <div class="trust-label">% Customer Satisfaction</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num" data-target="20">0</div>
+      <div class="trust-label">Years in Business</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num" data-target="24">0</div>
+      <div class="trust-label">Hour Emergency Response</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SERVICES ========== -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">COMPLETE<br/>ROOFING<br/>SOLUTIONS</h2>
+    </div>
+    <p class="section-sub">From storm repairs to full replacements, Summit Roofing Co handles every job with precision, speed, and lasting quality.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-lottie" id="lottie-1"></div>
+      <h3>ROOF INSTALLATION</h3>
+      <p>New construction and full replacement. We work with asphalt shingles, metal roofing, tile, and flat systems — all backed by manufacturer warranties.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-lottie" id="lottie-2"></div>
+      <h3>STORM REPAIR</h3>
+      <p>Rapid response after hail, wind, or hurricane damage. We assess, document, and repair fast — and work directly with your insurance company.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-lottie" id="lottie-3"></div>
+      <h3>ROOF INSPECTION</h3>
+      <p>Comprehensive visual and moisture inspections. Catch small problems before they become expensive disasters. Annual plans available.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-lottie" id="lottie-4"></div>
+      <h3>GUTTERS &amp; FLASHING</h3>
+      <p>Proper gutter installation and flashing prevents water intrusion. We seal every edge, valley, and penetration point to keep your home dry.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">05</div>
+      <div class="service-lottie" id="lottie-5"></div>
+      <h3>COMMERCIAL ROOFING</h3>
+      <p>TPO, EPDM, and modified bitumen systems for commercial properties. We minimize downtime and meet code on every project.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">06</div>
+      <div class="service-lottie" id="lottie-6"></div>
+      <h3>MAINTENANCE PLANS</h3>
+      <p>Seasonal maintenance keeps your roof performing for decades. Our plans include bi-annual inspections, cleaning, and priority repair access.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== PROCESS ========== -->
+<section id="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-title">OUR PROVEN<br/>PROCESS</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 01</div>
+        <div class="step-title">FREE INSPECTION</div>
+        <p class="step-desc">We come to you. A certified inspector evaluates your roof at zero cost with no obligation. Same-day appointments available.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 02</div>
+        <div class="step-title">CLEAR ESTIMATE</div>
+        <p class="step-desc">Transparent, line-item proposals with no hidden fees. We explain every cost and help you work with your insurance if needed.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 03</div>
+        <div class="step-title">EXPERT BUILD</div>
+        <p class="step-desc">Our crews arrive on time, work clean, and finish fast. All materials are premium grade. Your property is left spotless.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot"></div>
+        <div class="step-num">Step 04</div>
+        <div class="step-title">FINAL WALKTHROUGH</div>
+        <p class="step-desc">We walk the completed project with you before you pay a cent more. 100% satisfaction guaranteed or we come back and fix it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROJECTS ========== -->
+<section id="projects">
+  <div class="projects-inner">
+    <div class="projects-header">
+      <div>
+        <div class="section-label">Our Work</div>
+        <h2 class="section-title">RECENT<br/>PROJECTS</h2>
+      </div>
+      <a href="#cta" class="btn-primary magnetic" style="white-space:nowrap">Get a Quote</a>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-img-placeholder" data-label="SUMMIT" style="min-height:500px;"></div>
+        <div class="project-overlay">
+          <div class="project-tag">Full Replacement</div>
+          <div class="project-name">Colonial Home Reroof</div>
+          <div class="project-loc">Oakwood Estates · 3,200 sq ft · Architectural Shingles</div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-img-placeholder" data-label="ROOFING"></div>
+        <div class="project-overlay">
+          <div class="project-tag">Storm Repair</div>
+          <div class="project-name">Hail Damage Restoration</div>
+          <div class="project-loc">Lakeside Drive · Insurance Claim Handled</div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-img-placeholder" data-label="METAL"></div>
+        <div class="project-overlay">
+          <div class="project-tag">Metal Roofing</div>
+          <div class="project-name">Standing Seam Metal System</div>
+          <div class="project-loc">Commercial Plaza · 8,400 sq ft</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIAL ========== -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonial-content reveal slide-left">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Summit replaced our entire roof in a single day. The crew was professional, the cleanup was immaculate, and the price was exactly what they quoted. No surprises."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">MR</div>
+        <div>
+          <div class="author-name">Michael Rodriguez</div>
+          <div class="author-title">Homeowner · Westfield Heights</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-stats reveal slide-right">
+      <div class="t-stat">
+        <div class="t-stat-num">4.9★</div>
+        <div class="t-stat-label">Average Review Rating</div>
+      </div>
+      <div class="t-stat">
+        <div class="t-stat-num">312</div>
+        <div class="t-stat-label">Five-Star Reviews</div>
+      </div>
+      <div class="t-stat">
+        <div class="t-stat-num">100%</div>
+        <div class="t-stat-label">Satisfaction Guarantee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section id="cta">
+  <canvas id="cta-canvas"></canvas>
+  <div class="cta-inner">
+    <div class="section-label" style="justify-content:center; margin-bottom: 20px;">Ready to Get Started?</div>
+    <h2 class="cta-title reveal">YOUR ROOF.<br/><span>OUR GUARANTEE.</span></h2>
+    <p class="cta-sub reveal">Get your free, no-obligation inspection today. We'll assess your roof, give you an honest estimate, and get to work fast.</p>
+    <div class="hero-buttons" style="justify-content:center;" class="reveal">
+      <a href="tel:5555550100" class="btn-primary magnetic" style="font-size:1rem; padding:18px 44px;">📞 (555) 555-0100</a>
+      <a href="mailto:hello@summitroofingco.com" class="btn-secondary magnetic">Email Us</a>
+    </div>
+    <div class="cta-contact">
+      <a href="tel:5555550100" class="cta-phone">(555) 555-0100</a>
+      <div class="cta-divider"></div>
+      <a href="mailto:hello@summitroofingco.com" class="cta-email">hello@summitroofingco.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">SUMMIT <span>ROOFING</span></div>
+      <p>Expert roofing installations, repairs, and replacements. Licensed, insured, and trusted by homeowners and businesses for over 20 years.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Roof Installation</a></li>
+        <li><a href="#">Storm Repair</a></li>
+        <li><a href="#">Inspections</a></li>
+        <li><a href="#">Gutters & Flashing</a></li>
+        <li><a href="#">Commercial</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Process</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:5555550100">(555) 555-0100</a></li>
+        <li><a href="mailto:hello@summitroofingco.com">hello@summitroofingco.com</a></li>
+        <li><a href="#">Free Inspection</a></li>
+        <li><a href="#">Emergency Line</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Summit Roofing Co. All rights reserved.</p>
+    <div class="footer-license">
+      <span class="license-badge">Licensed</span>
+      <span class="license-badge">Insured</span>
+      <span class="license-badge">BBB A+</span>
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+<script>
+/* ===========================
+   LENIS SMOOTH SCROLL
+=========================== */
+const lenis = new Lenis({
+  duration: 1.3,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smooth: true,
+  mouseMultiplier: 1.2,
+});
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+
+/* ===========================
+   CURSOR
+=========================== */
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let cx = 0, cy = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', (e) => {
+  cx = e.clientX; cy = e.clientY;
+  cursor.style.left = cx + 'px';
+  cursor.style.top = cy + 'px';
+});
+function animateCursorRing() {
+  rx += (cx - rx) * 0.12;
+  ry += (cy - ry) * 0.12;
+  cursorRing.style.left = rx + 'px';
+  cursorRing.style.top = ry + 'px';
+  requestAnimationFrame(animateCursorRing);
+}
+animateCursorRing();
+
+/* ===========================
+   MAGNETIC BUTTONS
+=========================== */
+document.querySelectorAll('.magnetic').forEach(el => {
+  el.addEventListener('mousemove', (e) => {
+    const r = el.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) translateY(-3px)`;
+  });
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = '';
+  });
+});
+
+/* ===========================
+   LOADER
+=========================== */
+const loaderBar = document.getElementById('loader-bar');
+const loaderPct = document.getElementById('loader-percent');
+let pct = 0;
+const loaderInt = setInterval(() => {
+  pct += Math.random() * 12 + 4;
+  if (pct >= 100) { pct = 100; clearInterval(loaderInt); finishLoad(); }
+  loaderBar.style.width = pct + '%';
+  loaderPct.textContent = Math.floor(pct) + '%';
+}, 80);
+
+function finishLoad() {
+  setTimeout(() => {
+    gsap.to('#loader', {
+      opacity: 0,
+      duration: 0.7,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        document.getElementById('loader').style.display = 'none';
+        initAnimations();
+      }
+    });
+  }, 200);
+}
+
+/* ===========================
+   THREE.JS HERO SCENE
+=========================== */
+function initHeroThree() {
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 3, 14);
+  camera.lookAt(0, 0, 0);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0x1B2A3B, 1.5);
+  scene.add(ambientLight);
+  const dirLight = new THREE.DirectionalLight(0xE8601C, 3.5);
+  dirLight.position.set(8, 12, 8);
+  scene.add(dirLight);
+  const fillLight = new THREE.DirectionalLight(0x4a7fa5, 1.5);
+  fillLight.position.set(-8, -4, -8);
+  scene.add(fillLight);
+  const rimLight = new THREE.PointLight(0xE8601C, 2, 40);
+  rimLight.position.set(0, 8, -8);
+  scene.add(rimLight);
+
+  // House wireframe
+  const houseGroup = new THREE.Group();
+
+  // Base / walls
+  const wallGeo = new THREE.BoxGeometry(6, 3.5, 4);
+  const wallMat = new THREE.MeshPhongMaterial({
+    color: 0x1B2A3B,
+    emissive: 0x0a1520,
+    wireframe: false,
+    transparent: true,
+    opacity: 0.7,
+    shininess: 60,
+  });
+  const walls = new THREE.Mesh(wallGeo, wallMat);
+  walls.position.y = 0;
+  houseGroup.add(walls);
+
+  // Wall wireframe outline
+  const wallWireMat = new THREE.MeshBasicMaterial({ color: 0x4a7fa5, wireframe: true, transparent: true, opacity: 0.25 });
+  const wallWire = new THREE.Mesh(wallGeo, wallWireMat);
+  houseGroup.add(wallWire);
+
+  // Roof — two triangular prisms forming a peaked roof
+  const roofShape = new THREE.Shape();
+  roofShape.moveTo(-3.8, 0);
+  roofShape.lineTo(0, 2.6);
+  roofShape.lineTo(3.8, 0);
+  roofShape.lineTo(-3.8, 0);
+  const roofExtrudeSettings = { depth: 4.4, bevelEnabled: false };
+  const roofGeo = new THREE.ExtrudeGeometry(roofShape, roofExtrudeSettings);
+  const roofMat = new THREE.MeshPhongMaterial({
+    color: 0xE8601C,
+    emissive: 0x7a2a05,
+    shininess: 80,
+    transparent: true,
+    opacity: 0.9,
+  });
+  const roof = new THREE.Mesh(roofGeo, roofMat);
+  roof.rotation.y = Math.PI / 2;
+  roof.position.set(0, 1.75, 2.2);
+  houseGroup.add(roof);
+
+  // Roof wireframe
+  const roofWireMat = new THREE.MeshBasicMaterial({ color: 0xff8844, wireframe: true, transparent: true, opacity: 0.3 });
+  const roofWire = new THREE.Mesh(roofGeo, roofWireMat);
+  roofWire.rotation.y = Math.PI / 2;
+  roofWire.position.set(0, 1.75, 2.2);
+  houseGroup.add(roofWire);
+
+  // Door
+  const doorGeo = new THREE.BoxGeometry(0.9, 1.6, 0.1);
+  const doorMat = new THREE.MeshPhongMaterial({ color: 0x2d4a60 });
+  const door = new THREE.Mesh(doorGeo, doorMat);
+  door.position.set(0, -1.0, 2.05);
+  houseGroup.add(door);
+
+  // Windows
+  const winGeo = new THREE.BoxGeometry(0.8, 0.7, 0.08);
+  const winMat = new THREE.MeshPhongMaterial({ color: 0x6aadcc, transparent: true, opacity: 0.7, emissive: 0x1a4a66 });
+  [-1.8, 1.8].forEach(x => {
+    const win = new THREE.Mesh(winGeo, winMat);
+    win.position.set(x, 0.3, 2.05);
+    houseGroup.add(win);
+  });
+
+  scene.add(houseGroup);
+  houseGroup.position.set(2.5, -1, 0);
+
+  // Floating roof tile shards
+  const tiles = [];
+  const tileGeo = new THREE.BoxGeometry(0.6, 0.06, 0.8);
+  const tileMat = new THREE.MeshPhongMaterial({ color: 0xE8601C, shininess: 100, emissive: 0x4a1a00 });
+  const tileMat2 = new THREE.MeshPhongMaterial({ color: 0x4a7fa5, shininess: 100, emissive: 0x0a1a30 });
+
+  for (let i = 0; i < 22; i++) {
+    const m = i % 3 === 0 ? tileMat : tileMat2;
+    const tile = new THREE.Mesh(tileGeo, m);
+    tile.position.set(
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 12,
+      (Math.random() - 0.5) * 10 - 3
+    );
+    tile.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+    tile.userData = {
+      baseX: tile.position.x,
+      baseY: tile.position.y,
+      baseZ: tile.position.z,
+      rotSpeed: (Math.random() - 0.5) * 0.008,
+      floatSpeed: Math.random() * 0.4 + 0.2,
+      floatAmp: Math.random() * 0.4 + 0.2,
+      phase: Math.random() * Math.PI * 2,
+    };
+    scene.add(tile);
+    tiles.push(tile);
+  }
+
+  // Particle field
+  const particleCount = 280;
+  const pGeo = new THREE.BufferGeometry();
+  const pPositions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount * 3; i++) pPositions[i] = (Math.random() - 0.5) * 40;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+  const pMat = new THREE.PointsMaterial({ color: 0x4a7fa5, size: 0.06, transparent: true, opacity: 0.5 });
+  const particles = new THREE.Points(pGeo, pMat);
+  scene.add(particles);
+
+  // Mouse interaction
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // Resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.008;
+
+    // House subtle float and mouse tilt
+    houseGroup.rotation.y = THREE.MathUtils.lerp(houseGroup.rotation.y, mouseX * 0.25 + 0.1, 0.04);
+    houseGroup.rotation.x = THREE.MathUtils.lerp(houseGroup.rotation.x, mouseY * 0.1, 0.04);
+    houseGroup.position.y = -1 + Math.sin(t * 0.5) * 0.12;
+
+    // Tiles float
+    tiles.forEach(tile => {
+      tile.rotation.x += tile.userData.rotSpeed;
+      tile.rotation.y += tile.userData.rotSpeed * 0.7;
+      tile.position.y = tile.userData.baseY + Math.sin(t * tile.userData.floatSpeed + tile.userData.phase) * tile.userData.floatAmp;
+      tile.position.x = tile.userData.baseX + mouseX * (0.5 + Math.abs(tile.userData.baseZ) * 0.03);
+    });
+
+    particles.rotation.y += 0.0005;
+    particles.rotation.x = mouseY * 0.05;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+}
+initHeroThree();
+
+/* ===========================
+   THREE.JS CTA SCENE (particles)
+=========================== */
+function initCtaThree() {
+  const canvas = document.getElementById('cta-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
+  camera.position.z = 5;
+
+  const count = 600;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(count * 3);
+  for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 20;
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const mat = new THREE.PointsMaterial({ color: 0xE8601C, size: 0.05, transparent: true, opacity: 0.4 });
+  const pts = new THREE.Points(geo, mat);
+  scene.add(pts);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    pts.rotation.y += 0.001;
+    pts.rotation.x += 0.0005;
+    renderer.render(scene, camera);
+  }
+  animate();
+}
+initCtaThree();
+
+/* ===========================
+   MARQUEE
+=========================== */
+const items = [
+  'Roof Installation', 'Storm Repair', 'Emergency Service', 'Free Inspection',
+  'Metal Roofing', 'Shingle Replacement', 'Gutter Systems', 'Commercial Roofing',
+  'Leak Repair', 'Maintenance Plans', 'Insurance Claims', 'Tile Roofing'
+];
+const track = document.getElementById('marquee-track');
+const fullSet = [...items, ...items];
+fullSet.forEach(text => {
+  const el = document.createElement('div');
+  el.className = 'marquee-item';
+  el.textContent = text;
+  track.appendChild(el);
+});
+const clone = track.cloneNode(true);
+document.querySelector('.marquee-bar').appendChild(clone);
+
+/* ===========================
+   NAV SCROLL
+=========================== */
+const navbar = document.getElementById('navbar');
+lenis.on('scroll', ({ scroll }) => {
+  navbar.classList.toggle('scrolled', scroll > 60);
+});
+
+/* ===========================
+   GSAP ANIMATIONS
+=========================== */
+function initAnimations() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero entrance
+  gsap.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
+
+  // SplitText-style word reveal
+  gsap.to('.hero-headline .word', {
+    y: 0,
+    duration: 1,
+    stagger: 0.12,
+    delay: 0.4,
+    ease: 'expo.out',
+  });
+
+  gsap.to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, delay: 0.85, ease: 'power3.out' });
+  gsap.to('.btn-primary, .btn-secondary', {
+    opacity: 1,
+    duration: 0.6,
+    stagger: 0.1,
+    delay: 1.0,
+    ease: 'power3.out',
+  });
+  gsap.to('#hero-scroll', { opacity: 1, duration: 0.6, delay: 1.4 });
+  gsap.to('#hero-badge', { opacity: 1, duration: 0.6, delay: 1.6 });
+
+  // Trust bar counters
+  ScrollTrigger.create({
+    trigger: '.trust-bar',
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      document.querySelectorAll('.trust-num[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        gsap.to({ val: 0 }, {
+          val: target,
+          duration: 2,
+          ease: 'power2.out',
+          onUpdate: function() { el.textContent = Math.floor(this.targets()[0].val).toLocaleString(); },
+        });
+      });
+    }
+  });
+
+  // General reveal animations
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+        }
+      }
+    );
+  });
+
+  document.querySelectorAll('.slide-left').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, x: -60 },
+      { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      }
+    );
+  });
+
+  document.querySelectorAll('.slide-right').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, x: 60 },
+      { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      }
+    );
+  });
+
+  // CTA section title dramatic split
+  const ctaTitle = document.querySelector('.cta-title');
+  if (ctaTitle) {
+    ScrollTrigger.create({
+      trigger: '#cta',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.cta-title', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1, ease: 'expo.out' });
+        gsap.fromTo('.cta-sub', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.3, ease: 'power3.out' });
+      }
+    });
+  }
+
+  // Section labels float in
+  document.querySelectorAll('.section-label').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, x: -20 },
+      { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
+}
+
+/* ===========================
+   LOTTIE — inline SVG fallback
+   (Uses abstract animated icons via
+   embedded lottie data-URIs from lottiefiles free library)
+   In production, swap with real .json URLs from lottiefiles.com
+=========================== */
+const lottieConfigs = [
+  { id: 'lottie-1', color: '#E8601C', icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
+  { id: 'lottie-2', color: '#E8601C', icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+  { id: 'lottie-3', color: '#E8601C', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' },
+  { id: 'lottie-4', color: '#E8601C', icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
+  { id: 'lottie-5', color: '#E8601C', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0H5m14 0H5' },
+  { id: 'lottie-6', color: '#E8601C', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
+];
+
+lottieConfigs.forEach(cfg => {
+  const el = document.getElementById(cfg.id);
+  if (!el) return;
+  el.innerHTML = `
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="${cfg.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="${cfg.icon}"/>
+    </svg>
+  `;
+  // Pulse animation on the icon
+  const svg = el.querySelector('svg');
+  svg.style.animation = 'iconPulse 2s ease-in-out infinite';
+});
+
+const iconStyle = document.createElement('style');
+iconStyle.textContent = `
+  @keyframes iconPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.12); opacity: 0.8; }
+  }
+  .service-card:hover svg { animation: none; transform: scale(1.15); transition: transform 0.3s ease; }
+`;
+document.head.appendChild(iconStyle);
+</script>
+
+</body>
+</html>
