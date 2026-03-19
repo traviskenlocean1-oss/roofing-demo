@@ -14,127 +14,220 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --slate:#1B2A3B;--slate-dark:#0d1a26;--slate-mid:#1e3347;--slate-light:#243548;
-  --orange:#E8601C;--orange-lt:#f47338;--orange-dim:rgba(232,96,28,0.12);
-  --white:#fff;--off:#F8F5F0;
-  --gray:#7a8fa5;--gray-lt:#b8c8d8;
-  --fh:'Bebas Neue',sans-serif;--fb:'Inter',sans-serif;
+  --slate:#1B2A3B;
+  --slate-dark:#0d1a26;
+  --slate-mid:#1e3347;
+  --slate-light:#243548;
+  --orange:#E8601C;
+  --orange-lt:#f47338;
+  --orange-dim:rgba(232,96,28,0.12);
+  --white:#ffffff;
+  --off:#F7F8FA;
+  --off2:#EEF1F5;
+  --gray:#7a8fa5;
+  --gray-lt:#b8c8d8;
+  --dark-text:#0d1a26;
+  --mid-text:#3a4f63;
+  --fh:'Bebas Neue',sans-serif;
+  --fb:'Inter',sans-serif;
 }
+
 html{scroll-behavior:auto;}
-body{font-family:var(--fb);background:var(--slate-dark);color:var(--white);overflow-x:hidden;cursor:none;}
+body{font-family:var(--fb);background:var(--white);color:var(--dark-text);overflow-x:hidden;}
 
-/* CURSOR */
-#cur{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;}
-#cur-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(232,96,28,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
-.cg #cur{width:22px;height:22px;}
-.cg #cur-ring{width:58px;height:58px;border-color:var(--orange);}
+/* ─── NAV ─────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:20px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,0.98);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,0.07);
+  transition:background .4s,border-color .4s,box-shadow .4s;
+}
+nav.sc{
+  background:rgba(13,26,38,0.97);
+  border-color:rgba(232,96,28,0.15);
+  box-shadow:0 4px 32px rgba(0,0,0,0.25);
+}
+nav.sc .nv a{color:rgba(255,255,255,0.65);}
+nav.sc .nv a:hover{color:var(--orange);}
+nav.sc .nl{color:var(--white);}
+nav.sc .nl span{color:var(--orange);}
 
-/* LOADER */
-#loader{position:fixed;inset:0;background:var(--slate-dark);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
-.l-logo{font-family:var(--fh);font-size:2.8rem;letter-spacing:.1em;}
-.l-logo span{color:var(--orange);}
-.l-track{width:260px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;}
-.l-fill{height:100%;background:var(--orange);width:0%;}
-.l-pct{font-size:.65rem;letter-spacing:.2em;color:var(--gray);}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 72px;display:flex;justify-content:space-between;align-items:center;transition:background .4s,border-color .4s;border-bottom:1px solid transparent;}
-nav.sc{background:rgba(13,26,38,.97);backdrop-filter:blur(24px);border-color:rgba(232,96,28,.15);}
-.nl{font-family:var(--fh);font-size:1.8rem;letter-spacing:.08em;color:var(--white);text-decoration:none;}
+.nl{font-family:var(--fh);font-size:1.8rem;letter-spacing:.08em;color:var(--dark-text);text-decoration:none;transition:color .3s;}
 .nl span{color:var(--orange);}
 .nv{display:flex;gap:40px;list-style:none;}
-.nv a{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-lt);text-decoration:none;transition:color .2s;}
+.nv a{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-text);text-decoration:none;transition:color .2s;}
 .nv a:hover{color:var(--orange);}
 .nc{background:var(--orange)!important;color:var(--white)!important;padding:10px 24px!important;border-radius:3px;font-weight:700!important;transition:background .2s!important;}
 .nc:hover{background:var(--orange-lt)!important;}
 
-/* HERO — full screen, photo bg + 3D overlay */
-#hero{position:relative;width:100vw;height:100vh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
-.h-left{position:relative;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:120px 72px 80px;background:linear-gradient(to right,rgba(13,26,38,.97) 60%,rgba(13,26,38,.7) 100%);}
-.h-photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;z-index:1;}
-.h-photo-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,26,38,.95) 40%,rgba(13,26,38,.3) 100%);z-index:2;}
-.h-left>*{position:relative;z-index:3;}
+/* ─── HERO — WHITE ────────────────────────────── */
+#hero{
+  position:relative;width:100vw;height:100vh;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;
+  background:var(--white);
+}
 
-.h-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;display:flex;align-items:center;gap:12px;opacity:0;transform:translateY(16px);}
-.h-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--orange);}
-.h-title{font-family:var(--fh);font-size:clamp(4.5rem,9vw,9.5rem);line-height:.88;letter-spacing:.015em;margin-bottom:24px;}
-.h-title .ln{overflow:hidden;display:block;}
-.h-title .wd{display:inline-block;transform:translateY(110%);}
-.h-title .acc{color:var(--orange);text-shadow:0 0 60px rgba(232,96,28,.4);}
-.h-sub{font-size:1rem;font-weight:300;line-height:1.78;color:var(--gray-lt);max-width:440px;margin-bottom:36px;opacity:0;transform:translateY(16px);}
-.h-btns{display:flex;gap:14px;flex-wrap:wrap;}
-.btn{font-family:var(--fb);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:16px 36px;border-radius:3px;border:none;cursor:none;text-decoration:none;display:inline-block;opacity:0;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s,background .2s;}
-.bp{background:var(--orange);color:var(--white);}
-.bp:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 20px 48px rgba(232,96,28,.45);}
-.bs{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.25);}
-.bs:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-4px);}
-.h-certs{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;opacity:0;}
-.h-cert{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-lt);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:5px 12px;}
+/* Left content panel */
+.h-left{
+  position:relative;z-index:10;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:140px 72px 80px;
+  background:var(--white);
+}
 
-/* Hero right — 3D canvas */
-.h-right{position:relative;overflow:hidden;}
+/* Right 3D panel — keep dark for contrast with 3D scene */
+.h-right{
+  position:relative;overflow:hidden;
+  background:var(--off);
+}
+
+/* Subtle divider line between left/right */
+.h-left::after{
+  content:'';position:absolute;right:0;top:10%;bottom:10%;
+  width:1px;background:linear-gradient(to bottom,transparent,rgba(0,0,0,0.08),transparent);
+}
+
 #hc{position:absolute;inset:0;width:100%;height:100%;z-index:5;}
-/* Floating stat cards */
-.h-sc{position:absolute;z-index:10;background:rgba(13,26,38,.92);backdrop-filter:blur(16px);border:1px solid rgba(232,96,28,.25);padding:14px 20px;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+
+/* Floating stat cards on white bg — dark card style */
+.h-sc{
+  position:absolute;z-index:10;
+  background:var(--slate);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(232,96,28,0.25);
+  padding:14px 20px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.25);
+}
 .hs1{bottom:28%;left:-20px;}
 .hs2{top:22%;right:24px;}
 .hs3{bottom:12%;right:32px;}
 .h-sc-n{font-family:var(--fh);font-size:2rem;color:var(--orange);line-height:1;margin-bottom:2px;}
 .h-sc-l{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-lt);}
 
+/* Hero text — dark on white */
+.h-eyebrow{
+  font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;
+  opacity:0;transform:translateY(16px);
+}
+.h-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--orange);}
+
+.h-title{font-family:var(--fh);font-size:clamp(4.5rem,8vw,9rem);line-height:.88;letter-spacing:.015em;margin-bottom:24px;color:var(--dark-text);}
+.h-title .ln{overflow:hidden;display:block;}
+.h-title .wd{display:inline-block;transform:translateY(110%);}
+.h-title .acc{color:var(--orange);}
+
+.h-sub{
+  font-size:1rem;font-weight:400;line-height:1.78;
+  color:var(--mid-text);max-width:420px;margin-bottom:36px;
+  opacity:0;transform:translateY(16px);
+}
+
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  font-family:var(--fb);font-size:.75rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:16px 36px;border-radius:3px;border:none;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  opacity:0;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s,background .2s;
+}
+.bp{background:var(--orange);color:var(--white);}
+.bp:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 20px 48px rgba(232,96,28,.4);}
+.bs{background:transparent;color:var(--dark-text);border:1.5px solid rgba(0,0,0,0.2);}
+.bs:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-4px);}
+
+.h-certs{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;opacity:0;}
+.h-cert{
+  font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mid-text);
+  background:var(--off);border:1px solid rgba(0,0,0,0.1);
+  padding:5px 12px;border-radius:2px;
+}
+
 .h-scroll{position:absolute;bottom:36px;left:72px;z-index:10;display:flex;align-items:center;gap:12px;opacity:0;}
 .sc-bar{width:44px;height:1px;background:var(--orange);transform-origin:left;animation:sp 2.2s ease-in-out infinite;}
 @keyframes sp{0%,100%{transform:scaleX(1);opacity:1;}50%{transform:scaleX(.3);opacity:.3;}}
 .sc-txt{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);}
 
-/* MARQUEE */
+/* ─── MARQUEE — orange stays ──────────────────── */
 .mq{background:var(--orange);padding:13px 0;overflow:hidden;position:relative;z-index:5;}
 .mq-inner{display:flex;width:max-content;animation:mqs 32s linear infinite;}
 .mq-inner:hover{animation-play-state:paused;}
-.mq-item{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--white);padding:0 48px;white-space:nowrap;display:flex;align-items:center;gap:48px;}
+.mq-item{
+  font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--white);padding:0 48px;white-space:nowrap;
+  display:flex;align-items:center;gap:48px;
+}
 .mq-item::after{content:'◆';font-size:.42rem;opacity:.6;}
 @keyframes mqs{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-/* TRUST BAR */
-.trust{background:var(--slate-mid);border-bottom:1px solid rgba(255,255,255,.05);padding:52px 72px;}
+/* ─── TRUST BAR — white ───────────────────────── */
+.trust{background:var(--white);border-bottom:1px solid var(--off2);padding:60px 72px;}
 .trust-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
 .t-item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 20px;position:relative;}
-.t-item:not(:last-child)::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);height:55%;width:1px;background:rgba(255,255,255,.07);}
+.t-item:not(:last-child)::after{
+  content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);
+  height:55%;width:1px;background:rgba(0,0,0,0.08);
+}
 .t-num{font-family:var(--fh);font-size:clamp(3.8rem,5.5vw,6rem);color:var(--orange);line-height:1;letter-spacing:.02em;}
-.t-lbl{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);text-align:center;}
+.t-lbl{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid-text);text-align:center;}
 .t-div{width:22px;height:2px;background:var(--orange);opacity:.4;}
 
-/* ABOUT — split: text left, real photo right */
-#about{padding:120px 72px;background:var(--slate-dark);}
+/* ─── ABOUT — white ───────────────────────────── */
+#about{padding:120px 72px;background:var(--white);}
 .ab-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+
 .eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
 .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--orange);}
-.sec-title{font-family:var(--fh);font-size:clamp(3rem,5vw,5.5rem);line-height:.9;letter-spacing:.02em;color:var(--white);margin-bottom:16px;}
+
+/* Section titles — adapt to bg */
+.sec-title{font-family:var(--fh);font-size:clamp(3rem,5vw,5.5rem);line-height:.9;letter-spacing:.02em;color:var(--dark-text);margin-bottom:16px;}
 .sec-title span{color:var(--orange);}
-.ab-body{font-size:.92rem;font-weight:300;line-height:1.85;color:var(--gray-lt);margin:18px 0 32px;}
+.sec-title.light{color:var(--white);}
+.sec-title.light span{color:var(--orange);}
+.eyebrow.light{color:var(--orange-lt);}
+.eyebrow.light::before{background:var(--orange-lt);}
+
+.ab-body{font-size:.92rem;font-weight:300;line-height:1.85;color:var(--mid-text);margin:18px 0 32px;}
 .ab-pts{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;}
 .ab-pt{display:flex;align-items:flex-start;gap:14px;}
-.ab-icon{width:22px;height:22px;background:var(--orange-dim);border:1px solid var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.ab-icon{
+  width:22px;height:22px;background:var(--orange-dim);border:1px solid var(--orange);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+}
 .ab-icon svg{stroke:var(--orange);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.ab-pt-txt{font-size:.84rem;line-height:1.65;color:var(--gray-lt);}
-.ab-pt-txt strong{color:var(--white);font-weight:600;}
-/* Right photo panel */
+.ab-pt-txt{font-size:.84rem;line-height:1.65;color:var(--mid-text);}
+.ab-pt-txt strong{color:var(--dark-text);font-weight:600;}
+
 .ab-right{position:relative;}
 .ab-photo-wrap{position:relative;aspect-ratio:4/5;overflow:hidden;}
 .ab-photo{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease;}
 .ab-photo-wrap:hover .ab-photo{transform:scale(1.04);}
 .ab-tag{position:absolute;bottom:0;left:0;background:var(--orange);color:var(--white);padding:24px 28px;}
 .ab-tag-num{font-family:var(--fh);font-size:3rem;line-height:1;margin-bottom:2px;}
-.ab-tag-lbl{font-size:.5rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;opacity:.8;}
+.ab-tag-lbl{font-size:.5rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;opacity:.85;}
 
-/* SERVICES — cards */
+/* ─── SERVICES — DARK BLUE ────────────────────── */
 #services{padding:120px 72px;background:var(--slate);}
 .sv-in{max-width:1240px;margin:0 auto;}
 .sv-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px;}
 .sv-sub{font-size:.92rem;font-weight:300;line-height:1.8;color:var(--gray-lt);}
 .sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.sv-card{background:var(--slate-mid);border-radius:4px;padding:44px 36px;border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s,border-color .3s;cursor:none;}
-.sv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--orange-lt));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.sv-card{
+  background:var(--slate-mid);border-radius:4px;padding:44px 36px;
+  border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s,border-color .3s;
+  cursor:default;
+}
+.sv-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--orange),var(--orange-lt));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
 .sv-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.3);border-color:rgba(232,96,28,.2);}
 .sv-card:hover::before{transform:scaleX(1);}
 .sv-num{position:absolute;right:20px;top:20px;font-family:var(--fh);font-size:5rem;color:rgba(255,255,255,.04);line-height:1;pointer-events:none;}
@@ -143,12 +236,12 @@ nav.sc{background:rgba(13,26,38,.97);backdrop-filter:blur(24px);border-color:rgb
 .sv-card h3{font-family:var(--fh);font-size:1.7rem;letter-spacing:.03em;color:var(--white);margin-bottom:10px;}
 .sv-card p{font-size:.86rem;line-height:1.72;color:var(--gray);}
 
-/* PROJECTS — new layout: 3 col + real photos */
+/* ─── PROJECTS — DARK BLUE ────────────────────── */
 #projects{padding:120px 72px;background:var(--slate-dark);}
 .pj-in{max-width:1240px;margin:0 auto;}
 .pj-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
 .pj-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:480px 280px;gap:16px;}
-.pj-card{position:relative;overflow:hidden;border-radius:4px;cursor:none;}
+.pj-card{position:relative;overflow:hidden;border-radius:4px;cursor:default;}
 .pj-card:first-child{grid-row:span 2;}
 .pj-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease;}
 .pj-card:hover .pj-img{transform:scale(1.06);}
@@ -158,22 +251,31 @@ nav.sc{background:rgba(13,26,38,.97);backdrop-filter:blur(24px);border-color:rgb
 .pj-tag{font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
 .pj-name{font-family:var(--fh);font-size:1.9rem;color:var(--white);line-height:1.05;margin-bottom:6px;}
 .pj-loc{font-size:.78rem;color:var(--gray-lt);}
-.pj-arr{position:absolute;top:20px;right:20px;width:38px;height:38px;border:1px solid rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s,border-color .3s,background .3s;z-index:2;}
+.pj-arr{
+  position:absolute;top:20px;right:20px;width:38px;height:38px;
+  border:1px solid rgba(255,255,255,.15);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translateY(-6px);
+  transition:opacity .3s,transform .3s,border-color .3s,background .3s;z-index:2;
+}
 .pj-card:hover .pj-arr{opacity:1;transform:translateY(0);border-color:var(--orange);background:var(--orange);}
 
-/* PROCESS — new layout: numbered steps with photo side panel */
-#process{padding:120px 72px;background:var(--slate);}
+/* ─── PROCESS — WHITE ─────────────────────────── */
+#process{padding:120px 72px;background:var(--off);}
 .pr-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;}
-.pr-left{}
 .pr-steps{display:flex;flex-direction:column;gap:0;margin-top:48px;}
-.pr-step{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:36px 0;border-bottom:1px solid rgba(255,255,255,.06);position:relative;transition:background .2s;}
-.pr-step:first-child{border-top:1px solid rgba(255,255,255,.06);}
-.pr-step-num{font-family:var(--fh);font-size:3.5rem;color:rgba(232,96,28,.2);line-height:1;transition:color .3s;}
-.pr-step:hover .pr-step-num{color:rgba(232,96,28,.5);}
-.pr-step-title{font-family:var(--fh);font-size:1.6rem;color:var(--white);margin-bottom:10px;letter-spacing:.03em;transition:color .3s;}
+.pr-step{
+  display:grid;grid-template-columns:56px 1fr;gap:24px;
+  padding:36px 0;border-bottom:1px solid rgba(0,0,0,0.08);
+  position:relative;transition:background .2s;
+}
+.pr-step:first-child{border-top:1px solid rgba(0,0,0,0.08);}
+.pr-step-num{font-family:var(--fh);font-size:3.5rem;color:rgba(232,96,28,.25);line-height:1;transition:color .3s;}
+.pr-step:hover .pr-step-num{color:var(--orange);}
+.pr-step-title{font-family:var(--fh);font-size:1.6rem;color:var(--dark-text);margin-bottom:10px;letter-spacing:.03em;transition:color .3s;}
 .pr-step:hover .pr-step-title{color:var(--orange);}
-.pr-step-desc{font-size:.84rem;font-weight:300;line-height:1.7;color:var(--gray);}
-/* Right photo */
+.pr-step-desc{font-size:.84rem;font-weight:300;line-height:1.7;color:var(--mid-text);}
+
 .pr-right{position:sticky;top:100px;}
 .pr-photo-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px;}
 .pr-photo{width:100%;height:100%;object-fit:cover;display:block;}
@@ -181,7 +283,7 @@ nav.sc{background:rgba(13,26,38,.97);backdrop-filter:blur(24px);border-color:rgb
 .pr-photo-tag-n{font-size:2.5rem;line-height:1;}
 .pr-photo-tag-l{font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;opacity:.8;font-family:var(--fb);}
 
-/* TESTIMONIALS */
+/* ─── TESTIMONIALS — ORANGE stays ────────────── */
 #testimonials{padding:110px 72px;background:var(--orange);position:relative;overflow:hidden;}
 #testimonials::before{content:'"';position:absolute;top:-120px;right:30px;font-family:var(--fh);font-size:48rem;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;}
 .tm-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
@@ -194,22 +296,28 @@ nav.sc{background:rgba(13,26,38,.97);backdrop-filter:blur(24px);border-color:rgb
 .tm-name{font-size:.86rem;font-weight:600;}
 .tm-role{font-size:.74rem;opacity:.75;}
 .tm-stats{display:flex;flex-direction:column;gap:16px;}
-.tm-stat{padding:28px 32px;background:rgba(255,255,255,.13);border-radius:4px;border:1px solid rgba(255,255,255,.18);transition:background .3s,transform .3s;cursor:none;}
+.tm-stat{
+  padding:28px 32px;background:rgba(255,255,255,.13);border-radius:4px;
+  border:1px solid rgba(255,255,255,.18);transition:background .3s,transform .3s;cursor:default;
+}
 .tm-stat:hover{background:rgba(255,255,255,.2);transform:translateX(8px);}
 .tm-stat-n{font-family:var(--fh);font-size:3rem;line-height:1;margin-bottom:4px;}
 .tm-stat-l{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.72;}
 
-/* PARTNERS */
-#partners{padding:64px 72px;background:var(--slate-mid);border-bottom:1px solid rgba(255,255,255,.05);}
+/* ─── PARTNERS — WHITE ────────────────────────── */
+#partners{padding:64px 72px;background:var(--white);border-bottom:1px solid var(--off2);}
 .pt-in{max-width:1240px;margin:0 auto;text-align:center;}
 .pt-lbl{font-size:.6rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gray);margin-bottom:36px;}
-.pt-logos{display:flex;justify-content:center;align-items:center;gap:0;flex-wrap:wrap;}
-.pt-logo{padding:14px 28px;font-family:var(--fh);font-size:1.1rem;letter-spacing:.08em;color:rgba(255,255,255,.18);border-right:1px solid rgba(255,255,255,.07);transition:color .2s;}
+.pt-logos{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;}
+.pt-logo{
+  padding:14px 28px;font-family:var(--fh);font-size:1.1rem;letter-spacing:.08em;
+  color:rgba(0,0,0,0.2);border-right:1px solid rgba(0,0,0,0.07);transition:color .2s;
+}
 .pt-logo:last-child{border-right:none;}
 .pt-logo:hover{color:var(--orange);}
 
-/* FAQ — split with photo */
-#faq{padding:120px 72px;background:var(--slate-dark);}
+/* ─── FAQ — DARK BLUE ─────────────────────────── */
+#faq{padding:120px 72px;background:var(--slate);}
 .faq-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
 .faq-photo{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border-radius:4px;}
 .faq-list{display:flex;flex-direction:column;margin-top:48px;}
@@ -225,20 +333,34 @@ nav.sc{background:rgba(13,26,38,.97);backdrop-filter:blur(24px);border-color:rgb
 .faq-item.open .faq-a{max-height:200px;padding-bottom:18px;}
 .faq-a-txt{font-size:.83rem;font-weight:300;line-height:1.78;color:var(--gray-lt);}
 
-/* CTA — split: form left, photo right */
+/* ─── CTA — DARK BLUE ─────────────────────────── */
 #cta{display:grid;grid-template-columns:1fr 1fr;}
-.ct-left{padding:100px 72px;background:var(--slate-mid);position:relative;overflow:hidden;}
-.ct-left::before{content:'';position:absolute;left:15%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,96,28,.1) 30%,rgba(232,96,28,.1) 70%,transparent);pointer-events:none;}
+.ct-left{
+  padding:100px 72px;background:var(--slate-mid);position:relative;overflow:hidden;
+}
+.ct-left::before{
+  content:'';position:absolute;left:15%;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(232,96,28,.1) 30%,rgba(232,96,28,.1) 70%,transparent);
+  pointer-events:none;
+}
 .ct-eyebrow{font-size:.58rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
 .ct-eyebrow::before{content:'';display:block;width:22px;height:2px;background:var(--orange);}
 .ct-title{font-family:var(--fh);font-size:clamp(3.2rem,5.5vw,6rem);line-height:.88;color:var(--white);margin-bottom:16px;}
 .ct-title span{color:var(--orange);display:block;}
 .ct-sub{font-size:.9rem;font-weight:300;line-height:1.8;color:var(--gray-lt);max-width:420px;margin-bottom:40px;}
 .ct-form{display:flex;flex-direction:column;gap:14px;max-width:420px;}
-.ct-input{padding:14px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--white);font-size:.84rem;font-family:var(--fb);outline:none;border-radius:2px;transition:border-color .2s;}
+.ct-input{
+  padding:14px 18px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);color:var(--white);
+  font-size:.84rem;font-family:var(--fb);outline:none;border-radius:2px;transition:border-color .2s;
+}
 .ct-input::placeholder{color:rgba(255,255,255,.3);}
 .ct-input:focus{border-color:var(--orange);}
-.ct-btn{padding:14px 32px;background:var(--orange);color:var(--white);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background .2s;font-family:var(--fb);}
+.ct-btn{
+  padding:14px 32px;background:var(--orange);color:var(--white);
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:none;cursor:pointer;border-radius:2px;transition:background .2s;font-family:var(--fb);
+}
 .ct-btn:hover{background:var(--orange-lt);}
 .ct-note{font-size:.66rem;color:rgba(255,255,255,.28);}
 .ct-contact{display:flex;align-items:center;gap:14px;margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;}
@@ -250,7 +372,7 @@ nav.sc{background:rgba(13,26,38,.97);backdrop-filter:blur(24px);border-color:rgb
 .ct-right{position:relative;overflow:hidden;min-height:600px;}
 .ct-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
 
-/* FOOTER */
+/* ─── FOOTER — DARK BLUE ──────────────────────── */
 footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid rgba(232,96,28,.08);}
 .ft-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;margin-bottom:52px;}
 .ft-logo{font-family:var(--fh);font-size:2rem;letter-spacing:.08em;color:var(--white);margin-bottom:4px;}
@@ -265,21 +387,21 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
 .ft-badges{display:flex;gap:8px;}
 .ft-badge{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);background:rgba(255,255,255,.04);padding:5px 12px;border:1px solid rgba(255,255,255,.06);border-radius:2px;}
 
-/* REVEALS */
+/* ─── REVEAL CLASSES ──────────────────────────── */
 .rv{opacity:0;transform:translateY(48px);}
 .rl{opacity:0;transform:translateX(-56px);}
 .rr{opacity:0;transform:translateX(56px);}
 .rs{opacity:0;transform:scale(.93);}
 
-/* RESPONSIVE */
+/* ─── RESPONSIVE ──────────────────────────────── */
 @media(max-width:1100px){
   nav{padding:18px 28px;}.nv{display:none;}
   #hero{grid-template-columns:1fr;height:auto;min-height:100vh;}
   .h-left{padding:120px 28px 80px;}
+  .h-left::after{display:none;}
   .h-right{min-height:45vw;}.h-sc{display:none;}
   .h-scroll{left:28px;}
-  .trust,.ab-in,.sv-in,.pj-in,.pr-in,.tm-in,.faq-in,#partners,.ct-left,footer{padding-left:28px;padding-right:28px;}
-  #about,#services,#projects,#process,#testimonials,#faq,#partners{padding-left:28px;padding-right:28px;}
+  .trust,#about,#services,#projects,#process,#testimonials,#faq,#partners{padding-left:28px;padding-right:28px;}
   .ab-in,.pr-in,.tm-in,.faq-in{grid-template-columns:1fr;gap:48px;}
   .sv-head{grid-template-columns:1fr;gap:20px;}
   .sv-grid{grid-template-columns:1fr 1fr;}
@@ -296,22 +418,12 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   .sv-grid,.ft-grid{grid-template-columns:1fr;}
   .h-btns{flex-direction:column;}
   .pt-logos{flex-direction:column;align-items:center;}
-  .pt-logo{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);}
+  .pt-logo{border-right:none;border-bottom:1px solid rgba(0,0,0,0.06);}
   .pj-head{flex-direction:column;align-items:flex-start;gap:20px;}
 }
 </style>
 </head>
 <body>
-
-<div id="cur"></div>
-<div id="cur-ring"></div>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="l-logo">SUMMIT<span>.</span></div>
-  <div class="l-track"><div class="l-fill" id="lf"></div></div>
-  <div class="l-pct" id="lp">0%</div>
-</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -326,11 +438,9 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — WHITE -->
 <section id="hero">
   <div class="h-left">
-    <img class="h-photo-bg" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop" alt=""/>
-    <div class="h-photo-ov"></div>
     <div class="h-eyebrow">Licensed & Insured · Serving the Region Since 2003</div>
     <h1 class="h-title">
       <span class="ln"><span class="wd">BUILT</span></span>
@@ -348,12 +458,14 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
       <span class="h-cert">24hr Emergency</span>
     </div>
   </div>
+
   <div class="h-right">
     <canvas id="hc"></canvas>
     <div class="h-sc hs1"><div class="h-sc-n">1,400+</div><div class="h-sc-l">Roofs Completed</div></div>
     <div class="h-sc hs2"><div class="h-sc-n">98%</div><div class="h-sc-l">Client Satisfaction</div></div>
     <div class="h-sc hs3"><div class="h-sc-n">20+</div><div class="h-sc-l">Years Experience</div></div>
   </div>
+
   <div class="h-scroll" id="hs">
     <div class="sc-bar"></div>
     <span class="sc-txt">Scroll to explore</span>
@@ -363,7 +475,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
 <!-- MARQUEE -->
 <div class="mq"><div class="mq-inner" id="mq"></div></div>
 
-<!-- TRUST BAR -->
+<!-- TRUST BAR — white -->
 <div class="trust">
   <div class="trust-in">
     <div class="t-item rs"><div class="t-num" id="tn1">0</div><div class="t-div"></div><div class="t-lbl">Roofs Completed</div></div>
@@ -373,7 +485,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT — white -->
 <section id="about">
   <div class="ab-in">
     <div class="rl">
@@ -399,13 +511,13 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES — dark blue -->
 <section id="services">
   <div class="sv-in">
     <div class="sv-head">
       <div class="rl">
-        <div class="eyebrow">What We Do</div>
-        <h2 class="sec-title">Complete<br/><span>Roofing</span><br/>Solutions</h2>
+        <div class="eyebrow light">What We Do</div>
+        <h2 class="sec-title light">Complete<br/><span>Roofing</span><br/>Solutions</h2>
       </div>
       <p class="sv-sub rr">From emergency storm repairs to full replacements — Summit Roofing handles every job with speed, precision, and lasting quality. No job too big or too small.</p>
     </div>
@@ -420,13 +532,13 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS — dark -->
 <section id="projects">
   <div class="pj-in">
     <div class="pj-head">
       <div>
-        <div class="eyebrow rv">Our Work</div>
-        <h2 class="sec-title rv">Featured <span>Projects</span></h2>
+        <div class="eyebrow light rv">Our Work</div>
+        <h2 class="sec-title light rv">Featured <span>Projects</span></h2>
       </div>
       <a href="#cta" class="btn bp rv" style="opacity:0;">Get a Quote</a>
     </div>
@@ -435,94 +547,59 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
         <img class="pj-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop" alt="Colonial reroof"/>
         <div class="pj-ov"></div>
         <div class="pj-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-        <div class="pj-body">
-          <div class="pj-tag">Full Replacement</div>
-          <div class="pj-name">Colonial Home Reroof</div>
-          <div class="pj-loc">Oakwood Estates · 3,200 sq ft · Architectural Shingles</div>
-        </div>
+        <div class="pj-body"><div class="pj-tag">Full Replacement</div><div class="pj-name">Colonial Home Reroof</div><div class="pj-loc">Oakwood Estates · 3,200 sq ft · Architectural Shingles</div></div>
       </div>
       <div class="pj-card rs">
         <img class="pj-img" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80&auto=format&fit=crop" alt="Commercial roof"/>
         <div class="pj-ov"></div>
         <div class="pj-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-        <div class="pj-body">
-          <div class="pj-tag">Commercial · TPO System</div>
-          <div class="pj-name">Retail Plaza Reroof</div>
-          <div class="pj-loc">Downtown District · 18,000 sq ft</div>
-        </div>
+        <div class="pj-body"><div class="pj-tag">Commercial · TPO System</div><div class="pj-name">Retail Plaza Reroof</div><div class="pj-loc">Downtown District · 18,000 sq ft</div></div>
       </div>
       <div class="pj-card rs">
         <img class="pj-img" src="https://images.unsplash.com/photo-1448630360428-65456885c650?w=700&q=80&auto=format&fit=crop" alt="Metal roofing"/>
         <div class="pj-ov"></div>
         <div class="pj-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-        <div class="pj-body">
-          <div class="pj-tag">Metal Roofing</div>
-          <div class="pj-name">Standing Seam System</div>
-          <div class="pj-loc">Riverside Heights · 8,400 sq ft</div>
-        </div>
+        <div class="pj-body"><div class="pj-tag">Metal Roofing</div><div class="pj-name">Standing Seam System</div><div class="pj-loc">Riverside Heights · 8,400 sq ft</div></div>
       </div>
       <div class="pj-card rs">
         <img class="pj-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80&auto=format&fit=crop" alt="Storm repair"/>
         <div class="pj-ov"></div>
         <div class="pj-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-        <div class="pj-body">
-          <div class="pj-tag">Storm Repair</div>
-          <div class="pj-name">Hail Damage Restoration</div>
-          <div class="pj-loc">Lakeside Drive · Insurance Claim Handled</div>
-        </div>
+        <div class="pj-body"><div class="pj-tag">Storm Repair</div><div class="pj-name">Hail Damage Restoration</div><div class="pj-loc">Lakeside Drive · Insurance Claim Handled</div></div>
       </div>
       <div class="pj-card rs" style="grid-column:span 2;">
         <img class="pj-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop" alt="Large roof project"/>
         <div class="pj-ov"></div>
         <div class="pj-arr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-        <div class="pj-body">
-          <div class="pj-tag">New Construction · Design-Build</div>
-          <div class="pj-name">Luxury Residential Complex</div>
-          <div class="pj-loc">Westfield Estates · 24 Units · Full Roofing Package</div>
-        </div>
+        <div class="pj-body"><div class="pj-tag">New Construction · Design-Build</div><div class="pj-name">Luxury Residential Complex</div><div class="pj-loc">Westfield Estates · 24 Units · Full Roofing Package</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- PROCESS — white/off-white -->
 <section id="process">
   <div class="pr-in">
     <div class="pr-left">
       <div class="eyebrow rl">How We Work</div>
       <h2 class="sec-title rl">Our<br/><span>Proven</span><br/>Process</h2>
       <div class="pr-steps">
-        <div class="pr-step rv">
-          <div class="pr-step-num">01</div>
-          <div><div class="pr-step-title">FREE INSPECTION</div><p class="pr-step-desc">A certified inspector comes to you at zero cost. Same-day appointments available. No obligation, no pressure, no hidden agenda.</p></div>
-        </div>
-        <div class="pr-step rv">
-          <div class="pr-step-num">02</div>
-          <div><div class="pr-step-title">CLEAR ESTIMATE</div><p class="pr-step-desc">Transparent line-item proposals with zero hidden fees. We explain every cost and help you work with your insurance company when needed.</p></div>
-        </div>
-        <div class="pr-step rv">
-          <div class="pr-step-num">03</div>
-          <div><div class="pr-step-title">EXPERT BUILD</div><p class="pr-step-desc">Our crews arrive on time, work clean, and finish fast. Premium materials only. Your property is left spotless when we're done.</p></div>
-        </div>
-        <div class="pr-step rv">
-          <div class="pr-step-num">04</div>
-          <div><div class="pr-step-title">FINAL WALKTHROUGH</div><p class="pr-step-desc">We walk the completed job with you before final payment. 100% satisfaction guaranteed or we come back and make it right. No exceptions.</p></div>
-        </div>
+        <div class="pr-step rv"><div class="pr-step-num">01</div><div><div class="pr-step-title">FREE INSPECTION</div><p class="pr-step-desc">A certified inspector comes to you at zero cost. Same-day appointments available. No obligation, no pressure, no hidden agenda.</p></div></div>
+        <div class="pr-step rv"><div class="pr-step-num">02</div><div><div class="pr-step-title">CLEAR ESTIMATE</div><p class="pr-step-desc">Transparent line-item proposals with zero hidden fees. We explain every cost and help you work with your insurance company when needed.</p></div></div>
+        <div class="pr-step rv"><div class="pr-step-num">03</div><div><div class="pr-step-title">EXPERT BUILD</div><p class="pr-step-desc">Our crews arrive on time, work clean, and finish fast. Premium materials only. Your property is left spotless when we're done.</p></div></div>
+        <div class="pr-step rv"><div class="pr-step-num">04</div><div><div class="pr-step-title">FINAL WALKTHROUGH</div><p class="pr-step-desc">We walk the completed job with you before final payment. 100% satisfaction guaranteed or we come back and make it right. No exceptions.</p></div></div>
       </div>
     </div>
     <div class="pr-right rr">
       <div class="pr-photo-wrap">
         <img class="pr-photo" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop" alt="Roofing crew at work"/>
-        <div class="pr-photo-tag">
-          <div class="pr-photo-tag-n">312</div>
-          <div class="pr-photo-tag-l">Five-Star Reviews</div>
-        </div>
+        <div class="pr-photo-tag"><div class="pr-photo-tag-n">312</div><div class="pr-photo-tag-l">Five-Star Reviews</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TESTIMONIALS — orange -->
 <section id="testimonials">
   <div class="tm-in">
     <div class="rl">
@@ -548,7 +625,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   </div>
 </section>
 
-<!-- PARTNERS -->
+<!-- PARTNERS — white -->
 <section id="partners">
   <div class="pt-in">
     <div class="pt-lbl">Trusted by Homeowners & Businesses Across the Region</div>
@@ -563,46 +640,28 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- FAQ — dark blue -->
 <section id="faq">
   <div class="faq-in">
     <div>
       <img class="faq-photo rl" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&auto=format&fit=crop" alt="Roofing inspection"/>
     </div>
     <div>
-      <div class="eyebrow rv">FAQ</div>
-      <h2 class="sec-title rv">Common<br/><span>Questions</span></h2>
+      <div class="eyebrow light rv">FAQ</div>
+      <h2 class="sec-title light rv">Common<br/><span>Questions</span></h2>
       <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">How long does a full roof replacement take?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
-          <div class="faq-a"><p class="faq-a-txt">Most residential roofs are completed in a single day. Larger homes or commercial properties may take 2-3 days. We provide a detailed schedule at your free inspection so you know exactly what to expect.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">Do you work with insurance companies?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
-          <div class="faq-a"><p class="faq-a-txt">Yes — we specialize in insurance claims. Our team documents all damage, communicates directly with your adjuster, and handles the paperwork so you receive the maximum payout you're entitled to. We work with all major carriers.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">What warranty do you offer on your work?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
-          <div class="faq-a"><p class="faq-a-txt">All installations include full manufacturer material warranties (up to 50 years on premium shingles) plus our own lifetime workmanship warranty. If anything fails due to installation, we come back and fix it at no charge.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">Do you offer emergency roofing services?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
-          <div class="faq-a"><p class="faq-a-txt">Absolutely. Our emergency line is available 24/7, 365 days a year. Storm damage, sudden leaks, or structural failures — we dispatch crews within hours. Temporary tarping and emergency repairs are available around the clock.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">How do I know if I need a repair or full replacement?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
-          <div class="faq-a"><p class="faq-a-txt">Our free inspection gives you an honest assessment — we only recommend replacement when it's genuinely the better long-term value. If a repair will solve the problem for years to come, we'll tell you. We won't upsell work you don't need.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">What roofing materials do you work with?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
-          <div class="faq-a"><p class="faq-a-txt">We install all major roofing systems: architectural and 3-tab asphalt shingles, standing seam metal, tile and slate, flat roof TPO and EPDM, modified bitumen, and wood shake. We only use premium-grade materials from certified manufacturers.</p></div>
-        </div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">How long does a full roof replacement take?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">Most residential roofs are completed in a single day. Larger homes or commercial properties may take 2-3 days. We provide a detailed schedule at your free inspection so you know exactly what to expect.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">Do you work with insurance companies?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">Yes — we specialize in insurance claims. Our team documents all damage, communicates directly with your adjuster, and handles the paperwork so you receive the maximum payout you're entitled to.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">What warranty do you offer on your work?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">All installations include full manufacturer material warranties (up to 50 years on premium shingles) plus our own lifetime workmanship warranty. If anything fails due to installation, we come back at no charge.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">Do you offer emergency roofing services?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">Absolutely. Our emergency line is available 24/7, 365 days a year. Storm damage, sudden leaks, or structural failures — we dispatch crews within hours. Temporary tarping available around the clock.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">How do I know if I need a repair or full replacement?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">Our free inspection gives you an honest assessment — we only recommend replacement when it's genuinely the better long-term value. We won't upsell work you don't need.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">What roofing materials do you work with?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">We install all major systems: architectural shingles, standing seam metal, tile and slate, flat roof TPO and EPDM, modified bitumen, and wood shake. Premium-grade materials from certified manufacturers only.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA — SPLIT -->
+<!-- CTA — dark blue -->
 <section id="cta">
   <div class="ct-left">
     <div class="ct-eyebrow">Get Started</div>
@@ -626,7 +685,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER — dark -->
 <footer>
   <div class="ft-grid">
     <div>
@@ -644,32 +703,27 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;border-top:1px solid 
 </footer>
 
 <script>
-// LENIS
+// ── LENIS ──────────────────────────────────────
 var lenis=new Lenis({duration:1.4,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}});
 (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})(0);
 
-// CURSOR
-var cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
-var mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function ra(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ra);})();
-document.querySelectorAll('a,button,.btn,.sv-card,.pj-card,.tm-stat,.faq-q,.pr-step').forEach(function(el){
-  el.addEventListener('mouseenter',function(){document.body.classList.add('cg');});
-  el.addEventListener('mouseleave',function(){document.body.classList.remove('cg');});
-});
+// ── NO CUSTOM CURSOR — standard browser cursor ──
 
-// MAGNETIC
+// ── MAGNETIC BUTTONS ───────────────────────────
 document.querySelectorAll('.mag').forEach(function(el){
-  el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+(e.clientX-r.left-r.width/2)*.2+'px,'+(e.clientY-r.top-r.height/2)*.2+'px) translateY(-3px)';});
+  el.addEventListener('mousemove',function(e){
+    var r=el.getBoundingClientRect();
+    el.style.transform='translate('+(e.clientX-r.left-r.width/2)*.2+'px,'+(e.clientY-r.top-r.height/2)*.2+'px) translateY(-3px)';
+  });
   el.addEventListener('mouseleave',function(){el.style.transform='';});
 });
 
-// MARQUEE
+// ── MARQUEE ────────────────────────────────────
 var mi=['Roof Installation','Storm Repair','Emergency Service','Free Inspection','Metal Roofing','Shingle Replacement','Gutter Systems','Commercial Roofing','Leak Repair','Maintenance Plans','Insurance Claims','Tile Roofing','Flat Roof Systems','Ridge Venting','Fascia & Soffit','Roof Coatings'];
 var mel=document.getElementById('mq');
 mi.concat(mi).concat(mi).concat(mi).forEach(function(t){var d=document.createElement('div');d.className='mq-item';d.textContent=t;mel.appendChild(d);});
 
-// FAQ
+// ── FAQ ────────────────────────────────────────
 function toggleFaq(btn){
   var item=btn.closest('.faq-item');
   var wasOpen=item.classList.contains('open');
@@ -677,27 +731,32 @@ function toggleFaq(btn){
   if(!wasOpen)item.classList.add('open');
 }
 
-// NAV
-lenis.on('scroll',function(e){document.getElementById('nav').classList.toggle('sc',e.scroll>60);});
+// ── NAV SCROLL STATE ───────────────────────────
+lenis.on('scroll',function(e){
+  document.getElementById('nav').classList.toggle('sc',e.scroll>60);
+});
 
-// THREE.JS HERO — 3D house with orange roof
+// ── THREE.JS HERO — 3D roof scene ─────────────
 (function(){
   var canvas=document.getElementById('hc');
   if(!canvas)return;
   var W=canvas.offsetWidth||window.innerWidth/2,H=canvas.offsetHeight||window.innerHeight;
   var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setSize(W,H);renderer.setClearColor(0,0);
-  var scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(55,W/H,.1,1000);
+  renderer.setSize(W,H);
+  renderer.setClearColor(0xEEF1F5,1); // match off-white bg
+  var scene=new THREE.Scene();
+  scene.background=new THREE.Color(0xEEF1F5);
+  var camera=new THREE.PerspectiveCamera(55,W/H,.1,1000);
   camera.position.set(0,2,16);
-  scene.add(new THREE.AmbientLight(0x1B2A3B,2));
+  scene.add(new THREE.AmbientLight(0xffffff,2.5));
   var sun=new THREE.DirectionalLight(0xfff5e6,4.5);sun.position.set(10,16,10);scene.add(sun);
-  var fill=new THREE.DirectionalLight(0x2a5a8a,2);fill.position.set(-10,-5,-10);scene.add(fill);
+  var fill=new THREE.DirectionalLight(0xc8dff0,2);fill.position.set(-10,-5,-10);scene.add(fill);
   var rim=new THREE.PointLight(0xE8601C,3.5,60);rim.position.set(2,10,-8);scene.add(rim);
   var G=new THREE.Group();
-  var wallM=new THREE.MeshPhongMaterial({color:0x1e3347,emissive:0x0a1a28,shininess:40,transparent:true,opacity:.85});
+  var wallM=new THREE.MeshPhongMaterial({color:0x1e3347,emissive:0x0a1a28,shininess:40,transparent:true,opacity:.9});
   G.add(new THREE.Mesh(new THREE.BoxGeometry(7,4,5),wallM));
-  var edgeM=new THREE.LineBasicMaterial({color:0x4a7fa5,transparent:true,opacity:.3});
+  var edgeM=new THREE.LineBasicMaterial({color:0x4a7fa5,transparent:true,opacity:.4});
   G.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(7,4,5)),edgeM));
   var roofM=new THREE.MeshPhongMaterial({color:0xC8520F,emissive:0x6a2000,shininess:90});
   var rwM=new THREE.MeshBasicMaterial({color:0xff7733,wireframe:true,transparent:true,opacity:.18});
@@ -715,11 +774,24 @@ lenis.on('scroll',function(e){document.getElementById('nav').classList.toggle('s
   });
   var chim=new THREE.Mesh(new THREE.BoxGeometry(.8,1.8,.8),new THREE.MeshPhongMaterial({color:0x1a2a38,emissive:0x0a1520}));chim.position.set(-1.8,3.8,-1);G.add(chim);
   scene.add(G);G.position.set(1,-.8,0);
-  var tiles=[],tMs=[new THREE.MeshPhongMaterial({color:0xE8601C,emissive:0x4a1a00,shininess:120}),new THREE.MeshPhongMaterial({color:0x3a6a8a,emissive:0x0a2030,shininess:80}),new THREE.MeshPhongMaterial({color:0xc84800,emissive:0x3a1000,shininess:100})];
+  // floating tiles — use brand colors so they pop on light bg
+  var tiles=[];
+  var tMs=[
+    new THREE.MeshPhongMaterial({color:0xE8601C,emissive:0x4a1a00,shininess:120}),
+    new THREE.MeshPhongMaterial({color:0x1B2A3B,emissive:0x0a1520,shininess:80}),
+    new THREE.MeshPhongMaterial({color:0xc84800,emissive:0x3a1000,shininess:100})
+  ];
   var tG=new THREE.BoxGeometry(.7,.06,.9);
-  for(var i=0;i<18;i++){var t=new THREE.Mesh(tG,tMs[i%3]);t.position.set((Math.random()-.5)*20,(Math.random()-.5)*12,(Math.random()-.5)*10-2);t.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);t.userData={bX:t.position.x,bY:t.position.y,rs:(Math.random()-.5)*.007,fs:Math.random()*.35+.15,fa:Math.random()*.5+.2,ph:Math.random()*Math.PI*2};scene.add(t);tiles.push(t);}
+  for(var i=0;i<18;i++){
+    var t=new THREE.Mesh(tG,tMs[i%3]);
+    t.position.set((Math.random()-.5)*20,(Math.random()-.5)*12,(Math.random()-.5)*10-2);
+    t.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);
+    t.userData={bX:t.position.x,bY:t.position.y,rs:(Math.random()-.5)*.007,fs:Math.random()*.35+.15,fa:Math.random()*.5+.2,ph:Math.random()*Math.PI*2};
+    scene.add(t);tiles.push(t);
+  }
+  // particles — darker so visible on light bg
   var pG=new THREE.BufferGeometry();var pp=new Float32Array(280*3);for(var j=0;j<280*3;j++)pp[j]=(Math.random()-.5)*44;pG.setAttribute('position',new THREE.BufferAttribute(pp,3));
-  var pts=new THREE.Points(pG,new THREE.PointsMaterial({color:0x4a7fa5,size:.055,transparent:true,opacity:.4}));scene.add(pts);
+  var pts=new THREE.Points(pG,new THREE.PointsMaterial({color:0x1B2A3B,size:.07,transparent:true,opacity:.25}));scene.add(pts);
   var mouseX=0,mouseY=0;
   document.addEventListener('mousemove',function(e){mouseX=(e.clientX/window.innerWidth-.5)*2;mouseY=-(e.clientY/window.innerHeight-.5)*2;});
   window.addEventListener('resize',function(){var W2=canvas.offsetWidth,H2=canvas.offsetHeight;camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);});
@@ -728,77 +800,74 @@ lenis.on('scroll',function(e){document.getElementById('nav').classList.toggle('s
     G.rotation.y=THREE.MathUtils.lerp(G.rotation.y,mouseX*.22+.08,.04);
     G.rotation.x=THREE.MathUtils.lerp(G.rotation.x,mouseY*.08,.04);
     G.position.y=-.8+Math.sin(time*.4)*.1;
-    tiles.forEach(function(t){t.rotation.x+=t.userData.rs;t.rotation.y+=t.userData.rs*.6;t.position.y=t.userData.bY+Math.sin(time*t.userData.fs+t.userData.ph)*t.userData.fa;t.position.x=t.userData.bX+mouseX*.2;});
+    tiles.forEach(function(t){
+      t.rotation.x+=t.userData.rs;t.rotation.y+=t.userData.rs*.6;
+      t.position.y=t.userData.bY+Math.sin(time*t.userData.fs+t.userData.ph)*t.userData.fa;
+      t.position.x=t.userData.bX+mouseX*.2;
+    });
     pts.rotation.y+=.0004;
     renderer.render(scene,camera);
   })();
 })();
 
-// COUNTER
+// ── COUNTER ────────────────────────────────────
 function animCount(id,target,suffix,dur){
   var el=document.getElementById(id),v=0,step=target/(dur/16);
   var t=setInterval(function(){v=Math.min(v+step,target);el.textContent=(target>=1000?Math.floor(v).toLocaleString():Math.floor(v))+suffix;if(v>=target)clearInterval(t);},16);
 }
 
-// LOADER
-var lf=document.getElementById('lf'),lp=document.getElementById('lp'),pv=0;
-var iv=setInterval(function(){pv+=Math.random()*14+3;if(pv>=100){pv=100;clearInterval(iv);setTimeout(done,200);}lf.style.width=pv+'%';lp.textContent=Math.floor(pv)+'%';},70);
-function done(){gsap.to('#loader',{opacity:0,duration:.65,ease:'power2.inOut',onComplete:function(){document.getElementById('loader').style.display='none';initAnims();}});}
+// ── GSAP ANIMATIONS ────────────────────────────
+gsap.registerPlugin(ScrollTrigger);
+lenis.on('scroll',ScrollTrigger.update);
+gsap.ticker.add(function(t){lenis.raf(t*1000);});
+gsap.ticker.lagSmoothing(0);
 
-// GSAP
-function initAnims(){
-  gsap.registerPlugin(ScrollTrigger);
-  lenis.on('scroll',ScrollTrigger.update);
-  gsap.ticker.add(function(t){lenis.raf(t*1000);});
-  gsap.ticker.lagSmoothing(0);
+// Hero entrance
+gsap.to('.h-eyebrow',{opacity:1,y:0,duration:.9,delay:.15,ease:'power3.out'});
+gsap.to('.h-title .wd',{y:0,duration:1.1,stagger:.1,delay:.35,ease:'expo.out'});
+gsap.to('.h-sub',{opacity:1,y:0,duration:.85,delay:.8,ease:'power3.out'});
+gsap.to('.h-btns .btn',{opacity:1,duration:.6,stagger:.1,delay:1.0,ease:'power3.out'});
+gsap.to('.h-certs',{opacity:1,duration:.6,delay:1.25,ease:'power3.out'});
+gsap.to('#hs',{opacity:1,duration:.6,delay:1.45});
+gsap.from('.h-sc',{opacity:0,scale:.85,duration:.8,stagger:.15,delay:.95,ease:'back.out(1.5)'});
 
-  // Hero
-  gsap.to('.h-eyebrow',{opacity:1,y:0,duration:.9,delay:.2,ease:'power3.out'});
-  gsap.to('.h-title .wd',{y:0,duration:1.1,stagger:.1,delay:.4,ease:'expo.out'});
-  gsap.to('.h-sub',{opacity:1,y:0,duration:.85,delay:.85,ease:'power3.out'});
-  gsap.to('.h-btns .btn',{opacity:1,duration:.6,stagger:.1,delay:1.05,ease:'power3.out'});
-  gsap.to('.h-certs',{opacity:1,duration:.6,delay:1.3,ease:'power3.out'});
-  gsap.to('#hs',{opacity:1,duration:.6,delay:1.5});
-  gsap.from('.h-sc',{opacity:0,scale:.85,duration:.8,stagger:.15,delay:1.0,ease:'back.out(1.5)'});
+// Trust counters
+ScrollTrigger.create({trigger:'.trust',start:'top 88%',once:true,onEnter:function(){
+  animCount('tn1',1400,'+',1600);
+  animCount('tn2',98,'%',1400);
+  animCount('tn3',20,'+',1200);
+  animCount('tn4',24,'hr',1000);
+  gsap.to('.rs',{opacity:1,scale:1,duration:.85,stagger:.1,ease:'power3.out'});
+}});
 
-  // Trust counters
-  ScrollTrigger.create({trigger:'.trust',start:'top 88%',once:true,onEnter:function(){
-    animCount('tn1',1400,'+',1600);
-    animCount('tn2',98,'%',1400);
-    animCount('tn3',20,'+',1200);
-    animCount('tn4',24,'hr',1000);
-    gsap.to('.rs',{opacity:1,scale:1,duration:.85,stagger:.1,ease:'power3.out'});
-  }});
+// Generic reveals
+document.querySelectorAll('.rv').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.95,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
+document.querySelectorAll('.rl').forEach(function(el){gsap.to(el,{opacity:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
+document.querySelectorAll('.rr').forEach(function(el){gsap.to(el,{opacity:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
 
-  // Generic reveals
-  document.querySelectorAll('.rv').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.95,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
-  document.querySelectorAll('.rl').forEach(function(el){gsap.to(el,{opacity:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
-  document.querySelectorAll('.rr').forEach(function(el){gsap.to(el,{opacity:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
+// Projects
+ScrollTrigger.create({trigger:'#projects',start:'top 80%',once:true,onEnter:function(){gsap.to('.pj-card',{opacity:1,scale:1,duration:.8,stagger:.1,ease:'power3.out'});}});
 
-  // Projects
-  ScrollTrigger.create({trigger:'#projects',start:'top 80%',once:true,onEnter:function(){gsap.to('.pj-card',{opacity:1,scale:1,duration:.8,stagger:.1,ease:'power3.out'});}});
+// Services
+ScrollTrigger.create({trigger:'#services',start:'top 80%',once:true,onEnter:function(){gsap.from('.sv-card',{opacity:0,y:30,duration:.7,stagger:.08,ease:'power3.out'});}});
 
-  // Services
-  ScrollTrigger.create({trigger:'#services',start:'top 80%',once:true,onEnter:function(){gsap.from('.sv-card',{opacity:0,y:30,duration:.7,stagger:.08,ease:'power3.out'});}});
+// CTA
+ScrollTrigger.create({trigger:'#cta',start:'top 80%',once:true,onEnter:function(){
+  gsap.from('.ct-title',{y:40,opacity:0,duration:1,ease:'expo.out'});
+  gsap.from('.ct-form',{y:24,opacity:0,duration:.8,delay:.3,ease:'power3.out'});
+  gsap.from('.ct-right',{scale:.97,opacity:0,duration:1,delay:.2,ease:'power3.out'});
+}});
 
-  // CTA
-  ScrollTrigger.create({trigger:'#cta',start:'top 80%',once:true,onEnter:function(){
-    gsap.from('.ct-title',{y:40,opacity:0,duration:1,ease:'expo.out'});
-    gsap.from('.ct-form',{y:24,opacity:0,duration:.8,delay:.3,ease:'power3.out'});
-    gsap.from('.ct-right',{scale:.97,opacity:0,duration:1,delay:.2,ease:'power3.out'});
-  }});
+// Testimonials
+ScrollTrigger.create({trigger:'#testimonials',start:'top 80%',once:true,onEnter:function(){
+  gsap.from('.tm-quote',{opacity:0,y:30,duration:1,ease:'expo.out'});
+  gsap.from('.tm-stat',{opacity:0,x:30,duration:.6,stagger:.1,delay:.3,ease:'power3.out'});
+}});
 
-  // Testimonials
-  ScrollTrigger.create({trigger:'#testimonials',start:'top 80%',once:true,onEnter:function(){
-    gsap.from('.tm-quote',{opacity:0,y:30,duration:1,ease:'expo.out'});
-    gsap.from('.tm-stat',{opacity:0,x:30,duration:.6,stagger:.1,delay:.3,ease:'power3.out'});
-  }});
-
-  // FAQ
-  ScrollTrigger.create({trigger:'#faq',start:'top 80%',once:true,onEnter:function(){
-    gsap.from('.faq-item',{opacity:0,y:16,duration:.5,stagger:.06,delay:.2,ease:'power3.out'});
-  }});
-}
+// FAQ
+ScrollTrigger.create({trigger:'#faq',start:'top 80%',once:true,onEnter:function(){
+  gsap.from('.faq-item',{opacity:0,y:16,duration:.5,stagger:.06,delay:.2,ease:'power3.out'});
+}});
 </script>
 </body>
 </html>
