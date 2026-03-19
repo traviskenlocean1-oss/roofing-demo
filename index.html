@@ -37,32 +37,17 @@ nav.sc .nc{color:var(--white)!important;}
 .nc{background:var(--orange)!important;color:var(--white)!important;padding:10px 22px!important;border-radius:2px;font-weight:600!important;letter-spacing:.1em!important;transition:background .2s!important;}
 .nc:hover{background:var(--orange-lt)!important;}
 
-/* HERO — full bleed photo */
+/* HERO */
 #hero{position:relative;width:100vw;height:100vh;overflow:hidden;display:flex;align-items:center;}
-.h-bg{
-  position:absolute;inset:0;
-  /* Reliable roofing aerial shot */
-  background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85&auto=format&fit=crop');
-  background-size:cover;background-position:center;
-}
-.h-ov1{position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,26,38,.92) 0%,rgba(13,26,38,.65) 50%,rgba(13,26,38,.2) 100%);}
-.h-ov2{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,38,.5) 0%,transparent 50%);}
+.h-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85&auto=format&fit=crop');background-size:cover;background-position:center;}
+.h-ov1{position:absolute;inset:0;background:rgba(13,26,38,.72);}
+.h-ov2{position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,26,38,.55) 0%,rgba(13,26,38,.2) 100%);}
 .h-accent{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--orange);}
-
 .h-content{position:relative;z-index:10;width:100%;padding:0 72px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px;}
 .h-tag{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);margin-bottom:24px;opacity:0;transform:translateY(12px);}
 .h-tag::before{content:'';display:block;width:32px;height:1px;background:var(--orange);}
-
-/* STATIC headline — no word-by-word animation */
-h1.h-title{
-  font-family:var(--fh);
-  font-size:clamp(5rem,10vw,10.5rem);
-  line-height:.88;letter-spacing:.02em;
-  color:var(--white);
-  opacity:0;transform:translateY(32px);
-}
+h1.h-title{font-family:var(--fh);font-size:clamp(5rem,10vw,10.5rem);line-height:.88;letter-spacing:.02em;color:var(--white);opacity:0;transform:translateY(32px);}
 h1.h-title .acc{color:var(--orange);}
-
 .h-right{padding-bottom:8px;opacity:0;transform:translateY(24px);}
 .h-desc{font-size:1rem;font-weight:300;line-height:1.82;color:rgba(255,255,255,.8);max-width:380px;margin-bottom:36px;border-left:3px solid var(--orange);padding-left:20px;}
 .h-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:32px;}
@@ -73,7 +58,6 @@ h1.h-title .acc{color:var(--orange);}
 .bs:hover{border-color:var(--white);background:rgba(255,255,255,.08);transform:translateY(-3px);}
 .h-trust{display:flex;gap:8px;flex-wrap:wrap;}
 .h-pill{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:40px;background:rgba(255,255,255,.06);opacity:0;}
-
 .h-scroll{position:absolute;right:72px;bottom:48px;z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;}
 .h-scroll-line{width:1px;height:48px;background:rgba(255,255,255,.2);position:relative;overflow:hidden;}
 .h-scroll-line::after{content:'';position:absolute;top:-100%;left:0;right:0;bottom:0;background:var(--orange);animation:sl 1.8s ease-in-out infinite;}
@@ -148,7 +132,7 @@ h1.h-title .acc{color:var(--orange);}
 .showcase-pt-txt{font-size:.84rem;font-weight:300;line-height:1.65;color:var(--mid);}
 .showcase-pt-txt strong{color:var(--dark);font-weight:600;}
 .showcase-right{position:relative;background:var(--slate-mid);min-height:640px;}
-#hc{position:absolute;inset:0;width:100%;height:100%;display:block;}
+#hc{display:block;width:100%;height:640px;}
 .showcase-label{position:absolute;bottom:28px;left:28px;z-index:10;background:var(--orange);color:var(--white);padding:10px 18px;font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;}
 
 /* PROJECTS */
@@ -308,7 +292,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </ul>
 </nav>
 
-<!-- HERO — full bleed roofing photo, NO animated words -->
 <section id="hero">
   <div class="h-bg"></div>
   <div class="h-ov1"></div><div class="h-ov2"></div><div class="h-accent"></div>
@@ -336,7 +319,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- STAT STRIP -->
 <div class="stat-strip">
   <div class="stat-strip-item"><div class="ss-num" id="tn1">0</div><div class="ss-lbl">Roofs Completed</div></div>
   <div class="stat-strip-item"><div class="ss-num" id="tn2">0</div><div class="ss-lbl">Client Satisfaction</div></div>
@@ -344,10 +326,8 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   <div class="stat-strip-item"><div class="ss-num" id="tn4">0</div><div class="ss-lbl">5-Star Reviews</div></div>
 </div>
 
-<!-- MARQUEE -->
 <div class="mq"><div class="mq-inner" id="mq"></div></div>
 
-<!-- ABOUT -->
 <section id="about" class="sec-pad">
   <div class="inner">
     <div class="ab-left">
@@ -364,16 +344,13 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
       <a href="#cta" class="btn bp">Schedule Free Inspection</a>
     </div>
     <div class="ab-right">
-      <!-- Verified roofing crew photo -->
-      <img class="ab-photo-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&auto=format&fit=crop" alt="Summit Roofing team on job site"/>
-      <!-- Verified residential roofing photo -->
-      <img class="ab-photo-inset" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&auto=format&fit=crop" alt="Completed roofing project"/>
+      <img class="ab-photo-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&auto=format&fit=crop" alt="Summit Roofing team"/>
+      <img class="ab-photo-inset" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&auto=format&fit=crop" alt="Completed roof"/>
       <div class="ab-badge"><div class="ab-badge-n">20+</div><div class="ab-badge-l">Years of Excellence</div></div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services" class="sec-pad">
   <div class="inner">
     <div class="sv-intro">
@@ -394,7 +371,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- 3D SHOWCASE -->
 <section id="showcase">
   <div class="showcase-in">
     <div class="showcase-left">
@@ -415,7 +391,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- PROJECTS — proven roofing photo IDs -->
 <section id="projects" class="sec-pad">
   <div class="inner">
     <div class="pj-head">
@@ -426,42 +401,20 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
       <a href="#cta" class="btn bp">Start Your Project</a>
     </div>
     <div class="pj-grid">
-      <!-- All photo IDs verified as roofing/construction content -->
-      <div class="pj-card">
-        <img class="pj-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80&auto=format&fit=crop" alt="Roofing crew"/>
-        <div class="pj-ov"></div>
-        <div class="pj-body"><div class="pj-tag">Full Replacement</div><div class="pj-name">Colonial Reroof</div><div class="pj-loc">Oakwood Estates · 3,200 sq ft</div></div>
-      </div>
-      <div class="pj-card">
-        <img class="pj-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format&fit=crop" alt="Residential roof"/>
-        <div class="pj-ov"></div>
-        <div class="pj-body"><div class="pj-tag">Architectural Shingles</div><div class="pj-name">Residential Reroof</div><div class="pj-loc">Riverside Heights · 2,800 sq ft</div></div>
-      </div>
-      <div class="pj-card">
-        <img class="pj-img" src="https://images.unsplash.com/photo-1448630360428-65456885c650?w=700&q=80&auto=format&fit=crop" alt="Metal roof"/>
-        <div class="pj-ov"></div>
-        <div class="pj-body"><div class="pj-tag">Metal Roofing</div><div class="pj-name">Standing Seam</div><div class="pj-loc">North District · 8,400 sq ft</div></div>
-      </div>
-      <div class="pj-card">
-        <img class="pj-img" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80&auto=format&fit=crop" alt="Roofing work"/>
-        <div class="pj-ov"></div>
-        <div class="pj-body"><div class="pj-tag">Storm Repair</div><div class="pj-name">Hail Restoration</div><div class="pj-loc">Lakeside Dr · Insurance Handled</div></div>
-      </div>
-      <div class="pj-card">
-        <img class="pj-img" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80&auto=format&fit=crop" alt="Commercial building"/>
-        <div class="pj-ov"></div>
-        <div class="pj-body"><div class="pj-tag">Commercial · TPO</div><div class="pj-name">Office Plaza Reroof</div><div class="pj-loc">Downtown · 18,000 sq ft</div></div>
-      </div>
+      <div class="pj-card"><img class="pj-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80&auto=format&fit=crop" alt="Roofing crew"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Full Replacement</div><div class="pj-name">Colonial Reroof</div><div class="pj-loc">Oakwood Estates · 3,200 sq ft</div></div></div>
+      <div class="pj-card"><img class="pj-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format&fit=crop" alt="Shingle roof"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Architectural Shingles</div><div class="pj-name">Residential Reroof</div><div class="pj-loc">Riverside Heights · 2,800 sq ft</div></div></div>
+      <div class="pj-card"><img class="pj-img" src="https://images.unsplash.com/photo-1448630360428-65456885c650?w=700&q=80&auto=format&fit=crop" alt="Metal roof"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Metal Roofing</div><div class="pj-name">Standing Seam</div><div class="pj-loc">North District · 8,400 sq ft</div></div></div>
+      <div class="pj-card"><img class="pj-img" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80&auto=format&fit=crop" alt="Roofing team"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Storm Repair</div><div class="pj-name">Hail Restoration</div><div class="pj-loc">Lakeside Dr · Insurance Handled</div></div></div>
+      <div class="pj-card"><img class="pj-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&auto=format&fit=crop&crop=top" alt="Commercial crew"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Commercial · TPO</div><div class="pj-name">Office Plaza Reroof</div><div class="pj-loc">Downtown · 18,000 sq ft</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
 <section id="process" class="sec-pad">
   <div class="inner">
     <div class="pr-in">
       <div class="pr-photo-wrap">
-        <img class="pr-photo" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&auto=format&fit=crop" alt="Roofing crew at work"/>
+        <img class="pr-photo" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Roofing crew"/>
         <div class="pr-photo-tag"><div class="pr-photo-tag-n">312</div><div class="pr-photo-tag-l">5-Star Reviews</div></div>
       </div>
       <div>
@@ -478,7 +431,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section id="testimonials" class="sec-pad">
   <div class="inner">
     <div class="tm-in">
@@ -500,7 +452,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- PARTNERS -->
 <section id="partners">
   <div class="pt-in">
     <div class="pt-lbl">Trusted Partners & Certifications</div>
@@ -512,13 +463,10 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq" class="sec-pad">
   <div class="inner">
     <div class="faq-in">
-      <div>
-        <img class="faq-photo" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop" alt="Roofing inspection"/>
-      </div>
+      <div><img class="faq-photo" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&auto=format&fit=crop" alt="Roofing inspection"/></div>
       <div class="faq-right">
         <div class="eyebrow">FAQ</div>
         <h2 class="sec-title">Common<br/><span>Questions</span></h2>
@@ -535,7 +483,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- CTA -->
 <section id="cta">
   <div class="cta-bg"></div><div class="cta-ov"></div><div class="cta-accent"></div>
   <div class="cta-in">
@@ -566,7 +513,6 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="ft-top">
     <div>
@@ -584,35 +530,27 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 </footer>
 
 <script>
-// LENIS
 var lenis=new Lenis({duration:1.4,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}});
 (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})(0);
 
-// MAGNETIC
 document.querySelectorAll('.mag').forEach(function(el){
   el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+(e.clientX-r.left-r.width/2)*.18+'px,'+(e.clientY-r.top-r.height/2)*.18+'px) translateY(-2px)';});
   el.addEventListener('mouseleave',function(){el.style.transform='';});
 });
 
-// MARQUEE
 var mi=['Roof Installation','Storm Repair','Emergency Service','Free Inspection','Metal Roofing','Shingle Replacement','Gutter Systems','Commercial Roofing','Leak Repair','Maintenance Plans','Insurance Claims','Tile Roofing','Flat Roof Systems','Ridge Venting','Fascia & Soffit','Roof Coatings'];
 var mel=document.getElementById('mq');
 mi.concat(mi).concat(mi).concat(mi).forEach(function(t){var d=document.createElement('div');d.className='mq-item';d.textContent=t;mel.appendChild(d);});
 
-// FAQ
 function toggleFaq(btn){var item=btn.closest('.faq-item');var wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});if(!wasOpen)item.classList.add('open');}
 
-// NAV
 lenis.on('scroll',function(e){document.getElementById('nav').classList.toggle('sc',e.scroll>80);});
 
-// THREE.JS — fixed sizing for showcase section
 (function(){
   var canvas=document.getElementById('hc');
   if(!canvas)return;
-  var container=canvas.parentElement;
-  var W=container.offsetWidth||700;
-  var H=container.offsetHeight||640;
-  if(H<200)H=640;
+  var H=640;
+  var W=canvas.parentElement.offsetWidth||Math.round(window.innerWidth/2);
   var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:false});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(W,H);
@@ -631,7 +569,6 @@ lenis.on('scroll',function(e){document.getElementById('nav').classList.toggle('s
   var roofM=new THREE.MeshPhongMaterial({color:0xC8520F,emissive:0x6a2000,shininess:100});
   var lr=new THREE.Mesh(new THREE.BoxGeometry(4.1,.18,5.6),roofM);lr.rotation.z=Math.PI/5.5;lr.position.set(-1.65,2.8,0);G.add(lr);
   var rr2=new THREE.Mesh(new THREE.BoxGeometry(4.1,.18,5.6),roofM);rr2.rotation.z=-Math.PI/5.5;rr2.position.set(1.65,2.8,0);G.add(rr2);
-  G.add(Object.assign(new THREE.Mesh(new THREE.BoxGeometry(.35,.35,5.8),new THREE.MeshPhongMaterial({color:0xaa3a00,emissive:0x5a1500,shininess:100})),{position:{x:0,y:3.7,z:0}}));
   var rdg=new THREE.Mesh(new THREE.BoxGeometry(.35,.35,5.8),new THREE.MeshPhongMaterial({color:0xaa3a00,emissive:0x5a1500,shininess:100}));rdg.position.set(0,3.7,0);G.add(rdg);
   var winM=new THREE.MeshPhongMaterial({color:0x6aadcc,transparent:true,opacity:.8,emissive:0x1a4060,shininess:130});
   [-2.2,2.2].forEach(function(x){var w=new THREE.Mesh(new THREE.BoxGeometry(.9,.8,.06),winM);w.position.set(x,.5,2.55);G.add(w);});
@@ -639,89 +576,45 @@ lenis.on('scroll',function(e){document.getElementById('nav').classList.toggle('s
   var dr=new THREE.Mesh(new THREE.BoxGeometry(1.1,2,.08),new THREE.MeshPhongMaterial({color:0x1a3040}));dr.position.set(0,-1.2,2.55);G.add(dr);
   scene.add(G);G.position.set(1,-.8,0);
   var tiles=[];
-  var tMs=[
-    new THREE.MeshPhongMaterial({color:0xE8601C,emissive:0x4a1a00,shininess:120}),
-    new THREE.MeshPhongMaterial({color:0x1B2A3B,emissive:0x0a1520,shininess:80}),
-    new THREE.MeshPhongMaterial({color:0xc84800,emissive:0x3a1000,shininess:100})
-  ];
+  var tMs=[new THREE.MeshPhongMaterial({color:0xE8601C,emissive:0x4a1a00,shininess:120}),new THREE.MeshPhongMaterial({color:0x1B2A3B,emissive:0x0a1520,shininess:80}),new THREE.MeshPhongMaterial({color:0xc84800,emissive:0x3a1000,shininess:100})];
   var tG=new THREE.BoxGeometry(.7,.06,.9);
-  for(var i=0;i<16;i++){
-    var t=new THREE.Mesh(tG,tMs[i%3]);
-    t.position.set((Math.random()-.5)*20,(Math.random()-.5)*12,(Math.random()-.5)*10-2);
-    t.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);
-    t.userData={bX:t.position.x,bY:t.position.y,rs:(Math.random()-.5)*.007,fs:Math.random()*.35+.15,fa:Math.random()*.5+.2,ph:Math.random()*Math.PI*2};
-    scene.add(t);tiles.push(t);
-  }
+  for(var i=0;i<16;i++){var t=new THREE.Mesh(tG,tMs[i%3]);t.position.set((Math.random()-.5)*20,(Math.random()-.5)*12,(Math.random()-.5)*10-2);t.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);t.userData={bX:t.position.x,bY:t.position.y,rs:(Math.random()-.5)*.007,fs:Math.random()*.35+.15,fa:Math.random()*.5+.2,ph:Math.random()*Math.PI*2};scene.add(t);tiles.push(t);}
   var pG=new THREE.BufferGeometry();var pp=new Float32Array(240*3);for(var j=0;j<240*3;j++)pp[j]=(Math.random()-.5)*40;pG.setAttribute('position',new THREE.BufferAttribute(pp,3));
   scene.add(new THREE.Points(pG,new THREE.PointsMaterial({color:0x4a7fa5,size:.06,transparent:true,opacity:.3})));
   var mouseX=0,mouseY=0;
   document.addEventListener('mousemove',function(e){mouseX=(e.clientX/window.innerWidth-.5)*2;mouseY=-(e.clientY/window.innerHeight-.5)*2;});
-  window.addEventListener('resize',function(){
-    var W2=container.offsetWidth,H2=container.offsetHeight;
-    if(H2<200)H2=640;
-    camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);
-  });
+  window.addEventListener('resize',function(){var W2=canvas.parentElement.offsetWidth||Math.round(window.innerWidth/2);camera.aspect=W2/H;camera.updateProjectionMatrix();renderer.setSize(W2,H);});
   var time=0;
   (function anim(){requestAnimationFrame(anim);time+=.008;
     G.rotation.y=THREE.MathUtils.lerp(G.rotation.y,mouseX*.22+.08,.04);
     G.rotation.x=THREE.MathUtils.lerp(G.rotation.x,mouseY*.08,.04);
     G.position.y=-.8+Math.sin(time*.4)*.1;
-    tiles.forEach(function(t){
-      t.rotation.x+=t.userData.rs;t.rotation.y+=t.userData.rs*.6;
-      t.position.y=t.userData.bY+Math.sin(time*t.userData.fs+t.userData.ph)*t.userData.fa;
-      t.position.x=t.userData.bX+mouseX*.18;
-    });
+    tiles.forEach(function(t){t.rotation.x+=t.userData.rs;t.rotation.y+=t.userData.rs*.6;t.position.y=t.userData.bY+Math.sin(time*t.userData.fs+t.userData.ph)*t.userData.fa;t.position.x=t.userData.bX+mouseX*.18;});
     renderer.render(scene,camera);
   })();
 })();
 
-// COUNTER
-function animCount(id,target,suffix,dur){
-  var el=document.getElementById(id),v=0,step=target/(dur/16);
-  var iv=setInterval(function(){v=Math.min(v+step,target);el.textContent=(target>=1000?Math.floor(v).toLocaleString():Math.floor(v))+suffix;if(v>=target)clearInterval(iv);},16);
-}
+function animCount(id,target,suffix,dur){var el=document.getElementById(id),v=0,step=target/(dur/16);var iv=setInterval(function(){v=Math.min(v+step,target);el.textContent=(target>=1000?Math.floor(v).toLocaleString():Math.floor(v))+suffix;if(v>=target)clearInterval(iv);},16);}
 
-// GSAP — clean simple reveals, no complex stagger chains
 gsap.registerPlugin(ScrollTrigger);
 lenis.on('scroll',ScrollTrigger.update);
 gsap.ticker.add(function(t){lenis.raf(t*1000);});
 gsap.ticker.lagSmoothing(0);
 
-// Hero — simple fades only, no word splitting
 gsap.to('.h-tag',{opacity:1,y:0,duration:.9,delay:.3,ease:'power3.out'});
 gsap.to('h1.h-title',{opacity:1,y:0,duration:1,delay:.5,ease:'power3.out'});
 gsap.to('#hr',{opacity:1,y:0,duration:.9,delay:.9,ease:'power3.out'});
 gsap.to('.h-pill',{opacity:1,duration:.5,stagger:.07,delay:1.2,ease:'power3.out'});
 gsap.to('#hscr',{opacity:1,duration:.6,delay:1.6});
 
-// Stat counters
-ScrollTrigger.create({trigger:'.stat-strip',start:'top 90%',once:true,onEnter:function(){
-  animCount('tn1',1400,'+',1600);
-  animCount('tn2',98,'%',1400);
-  animCount('tn3',20,'+',1200);
-  animCount('tn4',312,'',1800);
-}});
+ScrollTrigger.create({trigger:'.stat-strip',start:'top 90%',once:true,onEnter:function(){animCount('tn1',1400,'+',1600);animCount('tn2',98,'%',1400);animCount('tn3',20,'+',1200);animCount('tn4',312,'',1800);}});
 
-// Section reveals — simple, reliable
 var revealEls=document.querySelectorAll('#about .ab-left, #about .ab-right, .sv-intro, #showcase .showcase-left, .pj-head, .tm-left, .tm-right, .cta-left, .cta-in > div:last-child, #process .pr-photo-wrap, #process > .inner > .pr-in > div:last-child, #testimonials .tm-left, #testimonials .tm-right, #faq .faq-right, #faq > .inner > .faq-in > div:first-child');
-revealEls.forEach(function(el){
-  gsap.from(el,{opacity:0,y:40,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%',once:true}});
-});
+revealEls.forEach(function(el){gsap.from(el,{opacity:0,y:40,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%',once:true}});});
 
-// Service rows
-ScrollTrigger.create({trigger:'#services',start:'top 75%',once:true,onEnter:function(){
-  gsap.from('.sv-row',{opacity:0,x:-24,duration:.65,stagger:.08,ease:'power3.out'});
-}});
-
-// Project cards
-ScrollTrigger.create({trigger:'#projects .pj-grid',start:'top 80%',once:true,onEnter:function(){
-  gsap.from('.pj-card',{opacity:0,scale:.95,duration:.7,stagger:.08,ease:'power3.out'});
-}});
-
-// Process steps
-ScrollTrigger.create({trigger:'.pr-steps',start:'top 80%',once:true,onEnter:function(){
-  gsap.from('.pr-step',{opacity:0,y:24,duration:.6,stagger:.1,ease:'power3.out'});
-}});
+ScrollTrigger.create({trigger:'#services',start:'top 75%',once:true,onEnter:function(){gsap.from('.sv-row',{opacity:0,x:-24,duration:.65,stagger:.08,ease:'power3.out'});}});
+ScrollTrigger.create({trigger:'#projects .pj-grid',start:'top 80%',once:true,onEnter:function(){gsap.from('.pj-card',{opacity:0,scale:.95,duration:.7,stagger:.08,ease:'power3.out'});}});
+ScrollTrigger.create({trigger:'.pr-steps',start:'top 80%',once:true,onEnter:function(){gsap.from('.pr-step',{opacity:0,y:24,duration:.6,stagger:.1,ease:'power3.out'});}});
 </script>
 </body>
 </html>
