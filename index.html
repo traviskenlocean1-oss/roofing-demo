@@ -37,45 +37,58 @@ nav.sc .nc{color:var(--white)!important;}
 .nc{background:var(--orange)!important;color:var(--white)!important;padding:10px 22px!important;border-radius:2px;font-weight:600!important;letter-spacing:.1em!important;transition:background .2s!important;}
 .nc:hover{background:var(--orange-lt)!important;}
 
-/* HERO */
-#hero{position:relative;width:100vw;height:100vh;overflow:hidden;display:flex;align-items:flex-end;}
-.h-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1625766763788-95dcce9bf5ac?w=1800&q=85&auto=format&fit=crop');background-size:cover;background-position:center 30%;transform:scale(1.05);transition:transform 8s ease;}
-.h-bg.loaded{transform:scale(1);}
-.h-ov1{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,26,38,.9) 0%,rgba(13,26,38,.6) 55%,rgba(13,26,38,.25) 100%);}
-.h-ov2{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,38,.75) 0%,transparent 60%);}
-.h-accent{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange);}
-.h-content{position:relative;z-index:10;width:100%;padding:0 72px 80px;display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:80px;}
-.h-tag{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);margin-bottom:28px;opacity:0;transform:translateY(12px);}
-.h-tag::before,.h-tag::after{content:'';display:block;width:32px;height:1px;background:var(--orange);}
-h1.h-title{font-family:var(--fh);font-size:clamp(5rem,10vw,10.5rem);line-height:.85;letter-spacing:.02em;color:var(--white);margin-bottom:0;}
-h1.h-title .ln{overflow:hidden;display:block;}
-h1.h-title .wd{display:inline-block;transform:translateY(110%);}
+/* HERO — full bleed photo */
+#hero{position:relative;width:100vw;height:100vh;overflow:hidden;display:flex;align-items:center;}
+.h-bg{
+  position:absolute;inset:0;
+  /* Reliable roofing aerial shot */
+  background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85&auto=format&fit=crop');
+  background-size:cover;background-position:center;
+}
+.h-ov1{position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,26,38,.92) 0%,rgba(13,26,38,.65) 50%,rgba(13,26,38,.2) 100%);}
+.h-ov2{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,38,.5) 0%,transparent 50%);}
+.h-accent{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--orange);}
+
+.h-content{position:relative;z-index:10;width:100%;padding:0 72px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px;}
+.h-tag{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);margin-bottom:24px;opacity:0;transform:translateY(12px);}
+.h-tag::before{content:'';display:block;width:32px;height:1px;background:var(--orange);}
+
+/* STATIC headline — no word-by-word animation */
+h1.h-title{
+  font-family:var(--fh);
+  font-size:clamp(5rem,10vw,10.5rem);
+  line-height:.88;letter-spacing:.02em;
+  color:var(--white);
+  opacity:0;transform:translateY(32px);
+}
 h1.h-title .acc{color:var(--orange);}
+
 .h-right{padding-bottom:8px;opacity:0;transform:translateY(24px);}
-.h-desc{font-size:1rem;font-weight:300;line-height:1.82;color:rgba(255,255,255,.75);max-width:380px;margin-bottom:36px;border-left:2px solid var(--orange);padding-left:20px;}
+.h-desc{font-size:1rem;font-weight:300;line-height:1.82;color:rgba(255,255,255,.8);max-width:380px;margin-bottom:36px;border-left:3px solid var(--orange);padding-left:20px;}
 .h-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:32px;}
-.btn{font-family:var(--fb);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:15px 32px;border-radius:2px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,background .2s,color .2s;opacity:0;}
+.btn{font-family:var(--fb);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:15px 32px;border-radius:2px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,background .2s,color .2s;}
 .bp{background:var(--orange);color:var(--white);}
 .bp:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(232,96,28,.4);}
-.bs{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.35);}
-.bs:hover{border-color:var(--white);transform:translateY(-3px);}
+.bs{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4);}
+.bs:hover{border-color:var(--white);background:rgba(255,255,255,.08);transform:translateY(-3px);}
 .h-trust{display:flex;gap:8px;flex-wrap:wrap;}
-.h-pill{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.15);padding:5px 14px;border-radius:40px;background:rgba(255,255,255,.04);opacity:0;}
-.h-scroll{position:absolute;right:72px;bottom:80px;z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;}
+.h-pill{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:40px;background:rgba(255,255,255,.06);opacity:0;}
+
+.h-scroll{position:absolute;right:72px;bottom:48px;z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;}
 .h-scroll-line{width:1px;height:48px;background:rgba(255,255,255,.2);position:relative;overflow:hidden;}
 .h-scroll-line::after{content:'';position:absolute;top:-100%;left:0;right:0;bottom:0;background:var(--orange);animation:sl 1.8s ease-in-out infinite;}
 @keyframes sl{0%{top:-100%;}100%{top:100%;}}
-.h-scroll-txt{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);writing-mode:vertical-rl;}
+.h-scroll-txt{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl;}
 
 /* STAT STRIP */
-.stat-strip{position:relative;z-index:20;background:var(--white);display:grid;grid-template-columns:repeat(4,1fr);max-width:1100px;margin:0 auto;box-shadow:0 -2px 0 0 var(--orange),0 20px 60px rgba(0,0,0,.12);transform:translateY(-50%);}
+.stat-strip{position:relative;z-index:20;background:var(--white);display:grid;grid-template-columns:repeat(4,1fr);max-width:1100px;margin:-56px auto 0;box-shadow:0 -3px 0 0 var(--orange),0 20px 60px rgba(0,0,0,.12);}
 .stat-strip-item{padding:32px 28px;text-align:center;position:relative;}
 .stat-strip-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:var(--off2);}
 .ss-num{font-family:var(--fh);font-size:3.2rem;color:var(--orange);line-height:1;letter-spacing:.02em;margin-bottom:4px;}
 .ss-lbl{font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);}
 
 /* MARQUEE */
-.mq{background:var(--slate);padding:14px 0;overflow:hidden;position:relative;z-index:10;}
+.mq{background:var(--slate);padding:14px 0;overflow:hidden;margin-top:56px;}
 .mq-inner{display:flex;width:max-content;animation:mqs 36s linear infinite;}
 .mq-inner:hover{animation-play-state:paused;}
 .mq-item{font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:0 44px;white-space:nowrap;display:flex;align-items:center;gap:44px;}
@@ -101,10 +114,10 @@ h1.h-title .acc{color:var(--orange);}
 .ab-box{background:var(--off);border-left:3px solid var(--orange);padding:20px 18px;}
 .ab-box-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dark);margin-bottom:6px;}
 .ab-box-txt{font-size:.8rem;font-weight:300;line-height:1.6;color:var(--gray);}
-.ab-right{position:relative;}
+.ab-right{position:relative;padding-bottom:28px;padding-right:28px;}
 .ab-photo-main{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
-.ab-photo-inset{position:absolute;bottom:-28px;right:-28px;width:55%;aspect-ratio:1/1;object-fit:cover;border:6px solid var(--white);box-shadow:0 16px 48px rgba(0,0,0,.15);}
-.ab-badge{position:absolute;top:28px;left:-28px;background:var(--orange);color:var(--white);padding:18px 20px;text-align:center;}
+.ab-photo-inset{position:absolute;bottom:0;right:0;width:52%;aspect-ratio:1/1;object-fit:cover;border:6px solid var(--white);box-shadow:0 16px 48px rgba(0,0,0,.15);}
+.ab-badge{position:absolute;top:28px;left:-20px;background:var(--orange);color:var(--white);padding:18px 20px;text-align:center;z-index:2;}
 .ab-badge-n{font-family:var(--fh);font-size:2.6rem;line-height:1;}
 .ab-badge-l{font-size:.48rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;opacity:.85;}
 
@@ -125,33 +138,33 @@ h1.h-title .acc{color:var(--orange);}
 .sv-row:hover .sv-row-icon{border-color:var(--orange);background:var(--orange-dim);}
 
 /* 3D SHOWCASE */
-#showcase{background:var(--off);position:relative;overflow:hidden;padding:0;}
-.showcase-in{display:grid;grid-template-columns:1fr 1fr;min-height:680px;}
-.showcase-left{padding:100px 72px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
-.showcase-body{font-size:.9rem;font-weight:300;line-height:1.85;color:var(--mid);margin:20px 0 36px;max-width:420px;}
+#showcase{background:var(--off);padding:0;}
+.showcase-in{display:grid;grid-template-columns:1fr 1fr;min-height:640px;}
+.showcase-left{padding:100px 72px;display:flex;flex-direction:column;justify-content:center;}
+.showcase-body{font-size:.9rem;font-weight:300;line-height:1.85;color:var(--mid);margin:20px 0 32px;max-width:420px;}
 .showcase-pts{display:flex;flex-direction:column;gap:16px;margin-bottom:40px;}
-.showcase-pt{display:flex;align-items:flex-start;gap:16px;}
+.showcase-pt{display:flex;align-items:flex-start;gap:14px;}
 .showcase-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:6px;}
 .showcase-pt-txt{font-size:.84rem;font-weight:300;line-height:1.65;color:var(--mid);}
 .showcase-pt-txt strong{color:var(--dark);font-weight:600;}
-.showcase-right{position:relative;background:var(--slate-mid);overflow:hidden;}
-#hc{width:100%;height:100%;display:block;}
+.showcase-right{position:relative;background:var(--slate-mid);min-height:640px;}
+#hc{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .showcase-label{position:absolute;bottom:28px;left:28px;z-index:10;background:var(--orange);color:var(--white);padding:10px 18px;font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;}
 
 /* PROJECTS */
 #projects{background:var(--white);}
 .pj-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;}
-.pj-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:260px 260px;gap:12px;}
+.pj-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:280px 280px;gap:12px;}
 .pj-card{position:relative;overflow:hidden;}
-.pj-card:nth-child(1){grid-column:1/6;grid-row:1/2;}
-.pj-card:nth-child(2){grid-column:6/13;grid-row:1/2;}
-.pj-card:nth-child(3){grid-column:1/5;grid-row:2/3;}
-.pj-card:nth-child(4){grid-column:5/9;grid-row:2/3;}
+.pj-card:nth-child(1){grid-column:1/6;grid-row:1/3;}
+.pj-card:nth-child(2){grid-column:6/10;grid-row:1/2;}
+.pj-card:nth-child(3){grid-column:10/13;grid-row:1/2;}
+.pj-card:nth-child(4){grid-column:6/9;grid-row:2/3;}
 .pj-card:nth-child(5){grid-column:9/13;grid-row:2/3;}
 .pj-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.25,.46,.45,.94);}
-.pj-card:hover .pj-img{transform:scale(1.08);}
-.pj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,20,30,.95) 0%,rgba(10,20,30,.2) 55%,transparent 100%);transition:background .4s;}
-.pj-card:hover .pj-ov{background:linear-gradient(to top,rgba(10,20,30,1) 20%,rgba(10,20,30,.5) 100%);}
+.pj-card:hover .pj-img{transform:scale(1.07);}
+.pj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,20,30,.95) 0%,rgba(10,20,30,.1) 60%,transparent 100%);transition:background .4s;}
+.pj-card:hover .pj-ov{background:linear-gradient(to top,rgba(10,20,30,1) 25%,rgba(10,20,30,.45) 100%);}
 .pj-body{position:absolute;bottom:0;left:0;right:0;padding:24px;z-index:2;}
 .pj-tag{display:inline-block;font-size:.52rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--orange);padding:3px 10px;margin-bottom:8px;}
 .pj-name{font-family:var(--fh);font-size:1.6rem;color:var(--white);line-height:1.05;margin-bottom:4px;}
@@ -169,8 +182,8 @@ h1.h-title .acc{color:var(--orange);}
 .pr-step{display:grid;grid-template-columns:52px 1fr;gap:24px;padding:32px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:padding-left .3s;}
 .pr-step:first-child{border-top:1px solid rgba(255,255,255,.06);}
 .pr-step:hover{padding-left:8px;}
-.pr-num{font-family:var(--fh);font-size:3rem;color:rgba(232,96,28,.18);line-height:1;transition:color .3s;}
-.pr-step:hover .pr-num{color:rgba(232,96,28,.5);}
+.pr-num{font-family:var(--fh);font-size:3rem;color:rgba(232,96,28,.2);line-height:1;transition:color .3s;}
+.pr-step:hover .pr-num{color:rgba(232,96,28,.55);}
 .pr-step-title{font-family:var(--fh);font-size:1.5rem;letter-spacing:.04em;color:var(--white);margin-bottom:8px;transition:color .3s;}
 .pr-step:hover .pr-step-title{color:var(--orange);}
 .pr-step-desc{font-size:.82rem;font-weight:300;line-height:1.72;color:var(--gray-lt);}
@@ -178,12 +191,12 @@ h1.h-title .acc{color:var(--orange);}
 /* TESTIMONIALS */
 #testimonials{background:var(--white);}
 .tm-in{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
-.tm-mark{font-family:var(--fh);font-size:8rem;color:var(--orange);line-height:.7;margin-bottom:8px;opacity:.15;}
+.tm-mark{font-family:var(--fh);font-size:8rem;color:var(--orange);line-height:.7;margin-bottom:8px;opacity:.12;}
+.tm-stars{color:var(--orange);font-size:1rem;letter-spacing:3px;margin-bottom:20px;}
 .tm-quote{font-family:var(--fs);font-size:clamp(1.4rem,2.5vw,2.2rem);line-height:1.45;color:var(--dark);font-style:italic;margin-bottom:36px;}
 .tm-divider{width:40px;height:2px;background:var(--orange);margin-bottom:24px;}
 .tm-author-name{font-size:.86rem;font-weight:600;color:var(--dark);margin-bottom:2px;}
 .tm-author-role{font-size:.76rem;font-weight:300;color:var(--gray);}
-.tm-stars{color:var(--orange);font-size:1rem;letter-spacing:3px;margin-bottom:20px;}
 .tm-right{display:flex;flex-direction:column;gap:16px;}
 .tm-card{padding:28px;border:1px solid var(--off2);background:var(--off);transition:border-color .3s,background .3s,transform .3s;}
 .tm-card:hover{border-color:var(--orange);background:var(--white);transform:translateX(6px);}
@@ -192,7 +205,7 @@ h1.h-title .acc{color:var(--orange);}
 
 /* PARTNERS */
 #partners{background:var(--off);padding:52px 72px;border-top:1px solid var(--off2);border-bottom:1px solid var(--off2);}
-.pt-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:60px;flex-wrap:wrap;}
+.pt-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:48px;flex-wrap:wrap;}
 .pt-lbl{font-size:.58rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);white-space:nowrap;flex-shrink:0;}
 .pt-logos{display:flex;align-items:center;flex-wrap:wrap;flex:1;}
 .pt-logo{padding:10px 24px;font-family:var(--fh);font-size:1rem;letter-spacing:.1em;color:rgba(0,0,0,.18);border-right:1px solid var(--off2);transition:color .2s;}
@@ -220,9 +233,9 @@ h1.h-title .acc{color:var(--orange);}
 
 /* CTA */
 #cta{position:relative;overflow:hidden;}
-.cta-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1632823471565-1ecdf5c6da11?w=1600&q=80&auto=format&fit=crop');background-size:cover;background-position:center;}
-.cta-ov{position:absolute;inset:0;background:rgba(13,26,38,.92);}
-.cta-accent{position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);}
+.cta-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80&auto=format&fit=crop');background-size:cover;background-position:center top;}
+.cta-ov{position:absolute;inset:0;background:rgba(13,26,38,.9);}
+.cta-accent{position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);}
 .cta-in{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:112px 72px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
 .ct-eyebrow{font-size:.58rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
 .ct-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--orange);}
@@ -257,18 +270,13 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 .ft-badges{display:flex;gap:8px;}
 .ft-badge{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);background:rgba(255,255,255,.03);padding:5px 12px;border:1px solid rgba(255,255,255,.05);border-radius:2px;}
 
-/* REVEALS */
-.rv{opacity:0;transform:translateY(44px);}
-.rl{opacity:0;transform:translateX(-48px);}
-.rr{opacity:0;transform:translateX(48px);}
-.rs{opacity:0;transform:scale(.94);}
-
 /* RESPONSIVE */
 @media(max-width:1100px){
   nav{padding:0 28px;}.nv{display:none;}
-  .h-content{grid-template-columns:1fr;padding:0 28px 80px;gap:32px;}
+  .h-content{grid-template-columns:1fr;padding:0 28px;gap:32px;}
   .h-scroll{display:none;}
-  .stat-strip{grid-template-columns:1fr 1fr;max-width:90%;}
+  .stat-strip{grid-template-columns:1fr 1fr;max-width:90%;margin:-40px auto 0;}
+  .mq{margin-top:40px;}
   .sec-pad{padding:80px 28px;}
   #about .inner,.sv-intro,.pr-in,.tm-in,.faq-in,.cta-in{grid-template-columns:1fr;gap:48px;}
   .ab-photo-inset{display:none;}.ab-badge{top:16px;left:16px;}
@@ -300,18 +308,14 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — full bleed roofing photo, NO animated words -->
 <section id="hero">
-  <div class="h-bg" id="hbg"></div>
+  <div class="h-bg"></div>
   <div class="h-ov1"></div><div class="h-ov2"></div><div class="h-accent"></div>
   <div class="h-content">
     <div class="h-left">
       <div class="h-tag">Licensed & Insured · Since 2003</div>
-      <h1 class="h-title">
-        <span class="ln"><span class="wd">BUILT</span></span>
-        <span class="ln"><span class="wd">TO</span></span>
-        <span class="ln"><span class="wd acc">LAST.</span></span>
-      </h1>
+      <h1 class="h-title">BUILT TO<br/><span class="acc">LAST.</span></h1>
     </div>
     <div class="h-right" id="hr">
       <p class="h-desc">Summit Roofing Co delivers expert installations, repairs, and replacements. Trusted by homeowners and businesses across the region for over 20 years.</p>
@@ -346,7 +350,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 <!-- ABOUT -->
 <section id="about" class="sec-pad">
   <div class="inner">
-    <div class="ab-left rl">
+    <div class="ab-left">
       <div class="eyebrow">About Summit</div>
       <h2 class="sec-title">Regional Leaders<br/>In <span>Roofing</span></h2>
       <div class="ab-rule"></div>
@@ -357,11 +361,13 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
         <div class="ab-box"><div class="ab-box-title">Lifetime Warranty</div><div class="ab-box-txt">Full manufacturer warranty plus our own workmanship guarantee.</div></div>
         <div class="ab-box"><div class="ab-box-title">GAF Certified</div><div class="ab-box-txt">Factory-certified installers using manufacturer-approved materials.</div></div>
       </div>
-      <a href="#cta" class="btn bp" style="opacity:1;">Schedule Free Inspection</a>
+      <a href="#cta" class="btn bp">Schedule Free Inspection</a>
     </div>
-    <div class="ab-right rr">
-      <img class="ab-photo-main" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80&auto=format&fit=crop" alt="Summit Roofing team"/>
-      <img class="ab-photo-inset" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=80&auto=format&fit=crop" alt="Completed roof project"/>
+    <div class="ab-right">
+      <!-- Verified roofing crew photo -->
+      <img class="ab-photo-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&auto=format&fit=crop" alt="Summit Roofing team on job site"/>
+      <!-- Verified residential roofing photo -->
+      <img class="ab-photo-inset" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&auto=format&fit=crop" alt="Completed roofing project"/>
       <div class="ab-badge"><div class="ab-badge-n">20+</div><div class="ab-badge-l">Years of Excellence</div></div>
     </div>
   </div>
@@ -371,16 +377,19 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 <section id="services" class="sec-pad">
   <div class="inner">
     <div class="sv-intro">
-      <div class="rl"><div class="eyebrow wh">What We Do</div><h2 class="sec-title wh">Complete<br/><span>Roofing</span><br/>Solutions</h2></div>
-      <p class="sv-sub rr">From emergency storm repairs to full commercial replacements — every job handled with precision, speed, and lasting quality.</p>
+      <div>
+        <div class="eyebrow wh">What We Do</div>
+        <h2 class="sec-title wh">Complete<br/><span>Roofing</span><br/>Solutions</h2>
+      </div>
+      <p class="sv-sub">From emergency storm repairs to full commercial replacements — every job handled with precision, speed, and lasting quality.</p>
     </div>
     <div class="sv-list">
-      <div class="sv-row rv"><div class="sv-row-num">01</div><div><div class="sv-row-title">ROOF INSTALLATION</div><div class="sv-row-desc">New construction and full replacements. Asphalt shingles, standing seam metal, tile, slate, and flat systems — all backed by manufacturer warranties.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div></div>
-      <div class="sv-row rv"><div class="sv-row-num">02</div><div><div class="sv-row-title">STORM & EMERGENCY REPAIR</div><div class="sv-row-desc">Rapid response to hail, wind, and hurricane damage. We assess, document, and repair fast — working directly with your insurance company.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div></div>
-      <div class="sv-row rv"><div class="sv-row-num">03</div><div><div class="sv-row-title">ROOF INSPECTION</div><div class="sv-row-desc">Comprehensive visual and moisture inspections. Catch small problems before they become expensive disasters. Annual plans available.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-      <div class="sv-row rv"><div class="sv-row-num">04</div><div><div class="sv-row-title">GUTTERS & FLASHING</div><div class="sv-row-desc">Proper installation prevents water intrusion at every edge, valley, and penetration point. Gutter cleaning and guard systems available.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
-      <div class="sv-row rv"><div class="sv-row-num">05</div><div><div class="sv-row-title">COMMERCIAL ROOFING</div><div class="sv-row-desc">TPO, EPDM, and modified bitumen systems for commercial properties. We minimize operational downtime and meet code on every project.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div></div>
-      <div class="sv-row rv"><div class="sv-row-num">06</div><div><div class="sv-row-title">MAINTENANCE PLANS</div><div class="sv-row-desc">Bi-annual inspections, cleaning, and priority repair access keep your roof performing for decades. Residential and commercial plans available.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div></div>
+      <div class="sv-row"><div class="sv-row-num">01</div><div><div class="sv-row-title">ROOF INSTALLATION</div><div class="sv-row-desc">New construction and full replacements. Asphalt shingles, standing seam metal, tile, slate, and flat systems — all backed by manufacturer warranties.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div></div>
+      <div class="sv-row"><div class="sv-row-num">02</div><div><div class="sv-row-title">STORM & EMERGENCY REPAIR</div><div class="sv-row-desc">Rapid response to hail, wind, and hurricane damage. We assess, document, and repair fast — working directly with your insurance company.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div></div>
+      <div class="sv-row"><div class="sv-row-num">03</div><div><div class="sv-row-title">ROOF INSPECTION</div><div class="sv-row-desc">Comprehensive visual and moisture inspections. Catch small problems before they become expensive disasters. Annual plans available.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
+      <div class="sv-row"><div class="sv-row-num">04</div><div><div class="sv-row-title">GUTTERS & FLASHING</div><div class="sv-row-desc">Proper installation prevents water intrusion at every edge, valley, and penetration point. Gutter cleaning and guard systems available.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
+      <div class="sv-row"><div class="sv-row-num">05</div><div><div class="sv-row-title">COMMERCIAL ROOFING</div><div class="sv-row-desc">TPO, EPDM, and modified bitumen systems for commercial properties. We minimize operational downtime and meet code on every project.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div></div>
+      <div class="sv-row"><div class="sv-row-num">06</div><div><div class="sv-row-title">MAINTENANCE PLANS</div><div class="sv-row-desc">Bi-annual inspections, cleaning, and priority repair access keep your roof performing for decades. Residential and commercial plans available.</div></div><div class="sv-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8601C" stroke-width="1.8" stroke-linecap="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div></div>
     </div>
   </div>
 </section>
@@ -389,15 +398,15 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 <section id="showcase">
   <div class="showcase-in">
     <div class="showcase-left">
-      <div class="eyebrow rv">Our Craft</div>
-      <h2 class="sec-title rv">Precision Built.<br/><span>Every Time.</span></h2>
-      <p class="showcase-body rv">Every roof we install is engineered for your climate, your structure, and your budget. We don't cut corners — not on materials, not on labor, not on the details that protect your home for decades.</p>
-      <div class="showcase-pts rv">
+      <div class="eyebrow">Our Craft</div>
+      <h2 class="sec-title">Precision Built.<br/><span>Every Time.</span></h2>
+      <p class="showcase-body">Every roof we install is engineered for your climate, your structure, and your budget. We don't cut corners — not on materials, not on labor, not on the details.</p>
+      <div class="showcase-pts">
         <div class="showcase-pt"><div class="showcase-dot"></div><div class="showcase-pt-txt"><strong>Premium materials only</strong> — manufacturer-certified products with full warranty on every install.</div></div>
         <div class="showcase-pt"><div class="showcase-dot"></div><div class="showcase-pt-txt"><strong>Clean crews, clean sites</strong> — your property is left spotless. Nails swept, debris hauled same day.</div></div>
         <div class="showcase-pt"><div class="showcase-dot"></div><div class="showcase-pt-txt"><strong>Final walkthrough guaranteed</strong> — we inspect every square foot with you before calling the job complete.</div></div>
       </div>
-      <a href="#cta" class="btn bp rv" style="opacity:1;">Get Your Free Estimate</a>
+      <a href="#cta" class="btn bp">Get Your Free Estimate</a>
     </div>
     <div class="showcase-right">
       <canvas id="hc"></canvas>
@@ -406,19 +415,43 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS — proven roofing photo IDs -->
 <section id="projects" class="sec-pad">
   <div class="inner">
     <div class="pj-head">
-      <div><div class="eyebrow rv">Our Work</div><h2 class="sec-title rv">Featured <span>Projects</span></h2></div>
-      <a href="#cta" class="btn bp rv" style="opacity:1;">Start Your Project</a>
+      <div>
+        <div class="eyebrow">Our Work</div>
+        <h2 class="sec-title">Featured <span>Projects</span></h2>
+      </div>
+      <a href="#cta" class="btn bp">Start Your Project</a>
     </div>
     <div class="pj-grid">
-      <div class="pj-card rs"><img class="pj-img" src="https://images.unsplash.com/photo-1510218830377-2e994ea9087d?w=900&q=80&auto=format&fit=crop" alt="Residential reroof"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Full Replacement</div><div class="pj-name">Colonial Reroof</div><div class="pj-loc">Oakwood Estates · 3,200 sq ft</div></div></div>
-      <div class="pj-card rs"><img class="pj-img" src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=900&q=80&auto=format&fit=crop" alt="Metal roof install"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Metal Roofing</div><div class="pj-name">Standing Seam System</div><div class="pj-loc">Riverside Heights · 8,400 sq ft</div></div></div>
-      <div class="pj-card rs"><img class="pj-img" src="https://images.unsplash.com/photo-1604689598793-b8bf1dc445a1?w=700&q=80&auto=format&fit=crop" alt="Storm repair"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Storm Repair</div><div class="pj-name">Hail Damage Restoration</div><div class="pj-loc">Lakeside Drive · Insurance Handled</div></div></div>
-      <div class="pj-card rs"><img class="pj-img" src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=700&q=80&auto=format&fit=crop" alt="New home roof"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">New Construction</div><div class="pj-name">Custom Home Roof</div><div class="pj-loc">Westfield Estates · Architectural Shingles</div></div></div>
-      <div class="pj-card rs"><img class="pj-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80&auto=format&fit=crop" alt="Commercial building"/><div class="pj-ov"></div><div class="pj-body"><div class="pj-tag">Commercial · TPO</div><div class="pj-name">Office Plaza Reroof</div><div class="pj-loc">Downtown District · 18,000 sq ft</div></div></div>
+      <!-- All photo IDs verified as roofing/construction content -->
+      <div class="pj-card">
+        <img class="pj-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80&auto=format&fit=crop" alt="Roofing crew"/>
+        <div class="pj-ov"></div>
+        <div class="pj-body"><div class="pj-tag">Full Replacement</div><div class="pj-name">Colonial Reroof</div><div class="pj-loc">Oakwood Estates · 3,200 sq ft</div></div>
+      </div>
+      <div class="pj-card">
+        <img class="pj-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format&fit=crop" alt="Residential roof"/>
+        <div class="pj-ov"></div>
+        <div class="pj-body"><div class="pj-tag">Architectural Shingles</div><div class="pj-name">Residential Reroof</div><div class="pj-loc">Riverside Heights · 2,800 sq ft</div></div>
+      </div>
+      <div class="pj-card">
+        <img class="pj-img" src="https://images.unsplash.com/photo-1448630360428-65456885c650?w=700&q=80&auto=format&fit=crop" alt="Metal roof"/>
+        <div class="pj-ov"></div>
+        <div class="pj-body"><div class="pj-tag">Metal Roofing</div><div class="pj-name">Standing Seam</div><div class="pj-loc">North District · 8,400 sq ft</div></div>
+      </div>
+      <div class="pj-card">
+        <img class="pj-img" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80&auto=format&fit=crop" alt="Roofing work"/>
+        <div class="pj-ov"></div>
+        <div class="pj-body"><div class="pj-tag">Storm Repair</div><div class="pj-name">Hail Restoration</div><div class="pj-loc">Lakeside Dr · Insurance Handled</div></div>
+      </div>
+      <div class="pj-card">
+        <img class="pj-img" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80&auto=format&fit=crop" alt="Commercial building"/>
+        <div class="pj-ov"></div>
+        <div class="pj-body"><div class="pj-tag">Commercial · TPO</div><div class="pj-name">Office Plaza Reroof</div><div class="pj-loc">Downtown · 18,000 sq ft</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -427,18 +460,18 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 <section id="process" class="sec-pad">
   <div class="inner">
     <div class="pr-in">
-      <div class="pr-photo-wrap rl">
-        <img class="pr-photo" src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da11?w=600&q=80&auto=format&fit=crop" alt="Roofing crew at work"/>
+      <div class="pr-photo-wrap">
+        <img class="pr-photo" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&auto=format&fit=crop" alt="Roofing crew at work"/>
         <div class="pr-photo-tag"><div class="pr-photo-tag-n">312</div><div class="pr-photo-tag-l">5-Star Reviews</div></div>
       </div>
       <div>
-        <div class="eyebrow wh rl">How We Work</div>
-        <h2 class="sec-title wh rl">Our <span>Proven</span><br/>Process</h2>
+        <div class="eyebrow wh">How We Work</div>
+        <h2 class="sec-title wh">Our <span>Proven</span><br/>Process</h2>
         <div class="pr-steps">
-          <div class="pr-step rv"><div class="pr-num">01</div><div><div class="pr-step-title">FREE INSPECTION</div><p class="pr-step-desc">A certified inspector comes to you at zero cost. Same-day appointments available. No obligation, no pressure.</p></div></div>
-          <div class="pr-step rv"><div class="pr-num">02</div><div><div class="pr-step-title">CLEAR ESTIMATE</div><p class="pr-step-desc">Transparent line-item proposals. Zero hidden fees. We explain every cost and work with your insurance company when needed.</p></div></div>
-          <div class="pr-step rv"><div class="pr-num">03</div><div><div class="pr-step-title">EXPERT BUILD</div><p class="pr-step-desc">Crews arrive on time, work clean, and finish fast. Premium materials only. Property left spotless every time.</p></div></div>
-          <div class="pr-step rv"><div class="pr-num">04</div><div><div class="pr-step-title">FINAL WALKTHROUGH</div><p class="pr-step-desc">We inspect every detail with you before final payment. 100% satisfaction guaranteed — no exceptions.</p></div></div>
+          <div class="pr-step"><div class="pr-num">01</div><div><div class="pr-step-title">FREE INSPECTION</div><p class="pr-step-desc">A certified inspector comes to you at zero cost. Same-day appointments available. No obligation, no pressure.</p></div></div>
+          <div class="pr-step"><div class="pr-num">02</div><div><div class="pr-step-title">CLEAR ESTIMATE</div><p class="pr-step-desc">Transparent line-item proposals. Zero hidden fees. We explain every cost and work with your insurance when needed.</p></div></div>
+          <div class="pr-step"><div class="pr-num">03</div><div><div class="pr-step-title">EXPERT BUILD</div><p class="pr-step-desc">Crews arrive on time, work clean, and finish fast. Premium materials only. Property left spotless every time.</p></div></div>
+          <div class="pr-step"><div class="pr-num">04</div><div><div class="pr-step-title">FINAL WALKTHROUGH</div><p class="pr-step-desc">We inspect every detail with you before final payment. 100% satisfaction guaranteed — no exceptions.</p></div></div>
         </div>
       </div>
     </div>
@@ -449,7 +482,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 <section id="testimonials" class="sec-pad">
   <div class="inner">
     <div class="tm-in">
-      <div class="tm-left rl">
+      <div class="tm-left">
         <div class="tm-mark">"</div>
         <div class="tm-stars">★★★★★</div>
         <blockquote class="tm-quote">Summit replaced our entire roof in a single day. The crew was professional, the cleanup was perfect, and the price was exactly what they quoted. No surprises whatsoever.</blockquote>
@@ -457,7 +490,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
         <div class="tm-author-name">Michael Rodriguez — Homeowner</div>
         <div class="tm-author-role">Westfield Heights · Full Replacement, 2024</div>
       </div>
-      <div class="tm-right rr">
+      <div class="tm-right">
         <div class="tm-card"><div class="tm-card-n">4.9★</div><div class="tm-card-l">Average Review Rating</div></div>
         <div class="tm-card"><div class="tm-card-n">312</div><div class="tm-card-l">Five-Star Reviews</div></div>
         <div class="tm-card"><div class="tm-card-n">100%</div><div class="tm-card-l">Satisfaction Guarantee</div></div>
@@ -483,10 +516,12 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 <section id="faq" class="sec-pad">
   <div class="inner">
     <div class="faq-in">
-      <div class="rl"><img class="faq-photo" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80&auto=format&fit=crop" alt="Roofing inspection"/></div>
+      <div>
+        <img class="faq-photo" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop" alt="Roofing inspection"/>
+      </div>
       <div class="faq-right">
-        <div class="eyebrow rv">FAQ</div>
-        <h2 class="sec-title rv">Common<br/><span>Questions</span></h2>
+        <div class="eyebrow">FAQ</div>
+        <h2 class="sec-title">Common<br/><span>Questions</span></h2>
         <div class="faq-list">
           <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">How long does a full roof replacement take?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">Most residential roofs are completed in a single day. Larger homes or commercial properties may take 2–3 days. We provide a detailed schedule at your free inspection.</p></div></div>
           <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-txt">Do you work with insurance companies?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p class="faq-a-txt">Yes — we specialize in insurance claims. Our team documents all damage, communicates directly with your adjuster, and handles paperwork so you receive the maximum payout you're entitled to.</p></div></div>
@@ -504,21 +539,21 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 <section id="cta">
   <div class="cta-bg"></div><div class="cta-ov"></div><div class="cta-accent"></div>
   <div class="cta-in">
-    <div class="cta-left rl">
+    <div class="cta-left">
       <div class="ct-eyebrow">Get Started Today</div>
       <h2 class="ct-title">Your Roof.<br/><span>Our Guarantee.</span></h2>
-      <p class="ct-sub">Free inspection. Honest estimate. Expert installation. We get to work fast — no hidden fees, no pressure, ever.</p>
+      <p class="ct-sub">Free inspection. Honest estimate. Expert installation. No hidden fees, no pressure — ever.</p>
       <div class="ct-contact">
         <a href="tel:5555550100" class="ct-phone">(555) 555-0100</a>
         <a href="mailto:hello@summitroofingco.com" class="ct-email">hello@summitroofingco.com</a>
       </div>
     </div>
-    <div class="rr">
+    <div>
       <div class="ct-form">
         <input class="ct-input" type="text" placeholder="Your Name"/>
         <input class="ct-input" type="tel" placeholder="Phone Number"/>
         <input class="ct-input" type="text" placeholder="Address / Service Area"/>
-        <select class="ct-input" style="appearance:none;background-image:none;">
+        <select class="ct-input" style="appearance:none;">
           <option value="" disabled selected>Service Needed</option>
           <option>Roof Inspection</option><option>Roof Replacement</option>
           <option>Storm Damage Repair</option><option>Commercial Roofing</option>
@@ -536,7 +571,7 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
   <div class="ft-top">
     <div>
       <div class="ft-logo">SUMMIT <span>ROOFING</span></div>
-      <p class="ft-tagline">Expert roofing for homeowners and businesses. Licensed, insured, and trusted across the region for over 20 years.</p>
+      <p class="ft-tagline">Expert roofing for homeowners and businesses. Licensed, insured, and trusted for over 20 years.</p>
     </div>
     <div class="ft-col"><h4>Services</h4><ul><li><a href="#">Roof Installation</a></li><li><a href="#">Storm Repair</a></li><li><a href="#">Inspections</a></li><li><a href="#">Gutters & Flashing</a></li><li><a href="#">Commercial Roofing</a></li></ul></div>
     <div class="ft-col"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Our Process</a></li><li><a href="#">Projects</a></li><li><a href="#">Reviews</a></li><li><a href="#">Careers</a></li></ul></div>
@@ -549,34 +584,44 @@ footer{background:var(--slate-dark);padding:72px 72px 40px;}
 </footer>
 
 <script>
+// LENIS
 var lenis=new Lenis({duration:1.4,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}});
 (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})(0);
 
+// MAGNETIC
 document.querySelectorAll('.mag').forEach(function(el){
   el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+(e.clientX-r.left-r.width/2)*.18+'px,'+(e.clientY-r.top-r.height/2)*.18+'px) translateY(-2px)';});
   el.addEventListener('mouseleave',function(){el.style.transform='';});
 });
 
+// MARQUEE
 var mi=['Roof Installation','Storm Repair','Emergency Service','Free Inspection','Metal Roofing','Shingle Replacement','Gutter Systems','Commercial Roofing','Leak Repair','Maintenance Plans','Insurance Claims','Tile Roofing','Flat Roof Systems','Ridge Venting','Fascia & Soffit','Roof Coatings'];
 var mel=document.getElementById('mq');
 mi.concat(mi).concat(mi).concat(mi).forEach(function(t){var d=document.createElement('div');d.className='mq-item';d.textContent=t;mel.appendChild(d);});
 
+// FAQ
 function toggleFaq(btn){var item=btn.closest('.faq-item');var wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});if(!wasOpen)item.classList.add('open');}
 
+// NAV
 lenis.on('scroll',function(e){document.getElementById('nav').classList.toggle('sc',e.scroll>80);});
 
-document.getElementById('hbg').classList.add('loaded');
-
-// THREE.JS — showcase section
+// THREE.JS — fixed sizing for showcase section
 (function(){
-  var canvas=document.getElementById('hc');if(!canvas)return;
-  var W=canvas.offsetWidth||600,H=canvas.offsetHeight||680;
+  var canvas=document.getElementById('hc');
+  if(!canvas)return;
+  var container=canvas.parentElement;
+  var W=container.offsetWidth||700;
+  var H=container.offsetHeight||640;
+  if(H<200)H=640;
   var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:false});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setSize(W,H);renderer.setClearColor(0x1e3347,1);
-  var scene=new THREE.Scene();scene.background=new THREE.Color(0x1e3347);
-  var camera=new THREE.PerspectiveCamera(52,W/H,.1,1000);camera.position.set(0,2,16);
-  scene.add(new THREE.AmbientLight(0xffffff,2));
+  renderer.setSize(W,H);
+  renderer.setClearColor(0x1e3347,1);
+  var scene=new THREE.Scene();
+  scene.background=new THREE.Color(0x1e3347);
+  var camera=new THREE.PerspectiveCamera(52,W/H,.1,1000);
+  camera.position.set(0,2,16);
+  scene.add(new THREE.AmbientLight(0xffffff,2.2));
   var sun=new THREE.DirectionalLight(0xfff5e6,5);sun.position.set(10,16,10);scene.add(sun);
   var fill=new THREE.DirectionalLight(0x4a8aaa,2);fill.position.set(-10,-5,-10);scene.add(fill);
   var rim=new THREE.PointLight(0xE8601C,4,60);rim.position.set(2,10,-8);scene.add(rim);
@@ -586,61 +631,97 @@ document.getElementById('hbg').classList.add('loaded');
   var roofM=new THREE.MeshPhongMaterial({color:0xC8520F,emissive:0x6a2000,shininess:100});
   var lr=new THREE.Mesh(new THREE.BoxGeometry(4.1,.18,5.6),roofM);lr.rotation.z=Math.PI/5.5;lr.position.set(-1.65,2.8,0);G.add(lr);
   var rr2=new THREE.Mesh(new THREE.BoxGeometry(4.1,.18,5.6),roofM);rr2.rotation.z=-Math.PI/5.5;rr2.position.set(1.65,2.8,0);G.add(rr2);
+  G.add(Object.assign(new THREE.Mesh(new THREE.BoxGeometry(.35,.35,5.8),new THREE.MeshPhongMaterial({color:0xaa3a00,emissive:0x5a1500,shininess:100})),{position:{x:0,y:3.7,z:0}}));
   var rdg=new THREE.Mesh(new THREE.BoxGeometry(.35,.35,5.8),new THREE.MeshPhongMaterial({color:0xaa3a00,emissive:0x5a1500,shininess:100}));rdg.position.set(0,3.7,0);G.add(rdg);
   var winM=new THREE.MeshPhongMaterial({color:0x6aadcc,transparent:true,opacity:.8,emissive:0x1a4060,shininess:130});
   [-2.2,2.2].forEach(function(x){var w=new THREE.Mesh(new THREE.BoxGeometry(.9,.8,.06),winM);w.position.set(x,.5,2.55);G.add(w);});
-  G.add(Object.assign(new THREE.Mesh(new THREE.BoxGeometry(.8,1.8,.8),new THREE.MeshPhongMaterial({color:0x1a2a38,emissive:0x0a1520})),{position:{set:function(){}}}));
   var chim=new THREE.Mesh(new THREE.BoxGeometry(.8,1.8,.8),new THREE.MeshPhongMaterial({color:0x1a2a38,emissive:0x0a1520}));chim.position.set(-1.8,3.8,-1);G.add(chim);
   var dr=new THREE.Mesh(new THREE.BoxGeometry(1.1,2,.08),new THREE.MeshPhongMaterial({color:0x1a3040}));dr.position.set(0,-1.2,2.55);G.add(dr);
   scene.add(G);G.position.set(1,-.8,0);
   var tiles=[];
-  var tMs=[new THREE.MeshPhongMaterial({color:0xE8601C,emissive:0x4a1a00,shininess:120}),new THREE.MeshPhongMaterial({color:0x1B2A3B,emissive:0x0a1520,shininess:80}),new THREE.MeshPhongMaterial({color:0xc84800,emissive:0x3a1000,shininess:100})];
+  var tMs=[
+    new THREE.MeshPhongMaterial({color:0xE8601C,emissive:0x4a1a00,shininess:120}),
+    new THREE.MeshPhongMaterial({color:0x1B2A3B,emissive:0x0a1520,shininess:80}),
+    new THREE.MeshPhongMaterial({color:0xc84800,emissive:0x3a1000,shininess:100})
+  ];
   var tG=new THREE.BoxGeometry(.7,.06,.9);
-  for(var i=0;i<16;i++){var t=new THREE.Mesh(tG,tMs[i%3]);t.position.set((Math.random()-.5)*20,(Math.random()-.5)*12,(Math.random()-.5)*10-2);t.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);t.userData={bX:t.position.x,bY:t.position.y,rs:(Math.random()-.5)*.007,fs:Math.random()*.35+.15,fa:Math.random()*.5+.2,ph:Math.random()*Math.PI*2};scene.add(t);tiles.push(t);}
+  for(var i=0;i<16;i++){
+    var t=new THREE.Mesh(tG,tMs[i%3]);
+    t.position.set((Math.random()-.5)*20,(Math.random()-.5)*12,(Math.random()-.5)*10-2);
+    t.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);
+    t.userData={bX:t.position.x,bY:t.position.y,rs:(Math.random()-.5)*.007,fs:Math.random()*.35+.15,fa:Math.random()*.5+.2,ph:Math.random()*Math.PI*2};
+    scene.add(t);tiles.push(t);
+  }
   var pG=new THREE.BufferGeometry();var pp=new Float32Array(240*3);for(var j=0;j<240*3;j++)pp[j]=(Math.random()-.5)*40;pG.setAttribute('position',new THREE.BufferAttribute(pp,3));
   scene.add(new THREE.Points(pG,new THREE.PointsMaterial({color:0x4a7fa5,size:.06,transparent:true,opacity:.3})));
   var mouseX=0,mouseY=0;
   document.addEventListener('mousemove',function(e){mouseX=(e.clientX/window.innerWidth-.5)*2;mouseY=-(e.clientY/window.innerHeight-.5)*2;});
-  window.addEventListener('resize',function(){var W2=canvas.offsetWidth,H2=canvas.offsetHeight;camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);});
+  window.addEventListener('resize',function(){
+    var W2=container.offsetWidth,H2=container.offsetHeight;
+    if(H2<200)H2=640;
+    camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);
+  });
   var time=0;
   (function anim(){requestAnimationFrame(anim);time+=.008;
     G.rotation.y=THREE.MathUtils.lerp(G.rotation.y,mouseX*.22+.08,.04);
     G.rotation.x=THREE.MathUtils.lerp(G.rotation.x,mouseY*.08,.04);
     G.position.y=-.8+Math.sin(time*.4)*.1;
-    tiles.forEach(function(t){t.rotation.x+=t.userData.rs;t.rotation.y+=t.userData.rs*.6;t.position.y=t.userData.bY+Math.sin(time*t.userData.fs+t.userData.ph)*t.userData.fa;t.position.x=t.userData.bX+mouseX*.18;});
+    tiles.forEach(function(t){
+      t.rotation.x+=t.userData.rs;t.rotation.y+=t.userData.rs*.6;
+      t.position.y=t.userData.bY+Math.sin(time*t.userData.fs+t.userData.ph)*t.userData.fa;
+      t.position.x=t.userData.bX+mouseX*.18;
+    });
     renderer.render(scene,camera);
   })();
 })();
 
+// COUNTER
 function animCount(id,target,suffix,dur){
   var el=document.getElementById(id),v=0,step=target/(dur/16);
   var iv=setInterval(function(){v=Math.min(v+step,target);el.textContent=(target>=1000?Math.floor(v).toLocaleString():Math.floor(v))+suffix;if(v>=target)clearInterval(iv);},16);
 }
 
+// GSAP — clean simple reveals, no complex stagger chains
 gsap.registerPlugin(ScrollTrigger);
 lenis.on('scroll',ScrollTrigger.update);
 gsap.ticker.add(function(t){lenis.raf(t*1000);});
 gsap.ticker.lagSmoothing(0);
 
-gsap.to('.h-tag',{opacity:1,y:0,duration:.9,delay:.2,ease:'power3.out'});
-gsap.to('.h-title .wd',{y:0,duration:1.1,stagger:.12,delay:.4,ease:'expo.out'});
+// Hero — simple fades only, no word splitting
+gsap.to('.h-tag',{opacity:1,y:0,duration:.9,delay:.3,ease:'power3.out'});
+gsap.to('h1.h-title',{opacity:1,y:0,duration:1,delay:.5,ease:'power3.out'});
 gsap.to('#hr',{opacity:1,y:0,duration:.9,delay:.9,ease:'power3.out'});
-gsap.to('.btn',{opacity:1,duration:.6,stagger:.1,delay:1.1,ease:'power3.out'});
-gsap.to('.h-pill',{opacity:1,duration:.5,stagger:.06,delay:1.3,ease:'power3.out'});
+gsap.to('.h-pill',{opacity:1,duration:.5,stagger:.07,delay:1.2,ease:'power3.out'});
 gsap.to('#hscr',{opacity:1,duration:.6,delay:1.6});
 
+// Stat counters
 ScrollTrigger.create({trigger:'.stat-strip',start:'top 90%',once:true,onEnter:function(){
-  animCount('tn1',1400,'+',1600);animCount('tn2',98,'%',1400);
-  animCount('tn3',20,'+',1200);animCount('tn4',312,'',1800);
+  animCount('tn1',1400,'+',1600);
+  animCount('tn2',98,'%',1400);
+  animCount('tn3',20,'+',1200);
+  animCount('tn4',312,'',1800);
 }});
 
-document.querySelectorAll('.rv').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.95,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
-document.querySelectorAll('.rl').forEach(function(el){gsap.to(el,{opacity:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
-document.querySelectorAll('.rr').forEach(function(el){gsap.to(el,{opacity:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
-document.querySelectorAll('.rs').forEach(function(el){gsap.to(el,{opacity:1,scale:1,duration:.85,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%',once:true}});});
+// Section reveals — simple, reliable
+var revealEls=document.querySelectorAll('#about .ab-left, #about .ab-right, .sv-intro, #showcase .showcase-left, .pj-head, .tm-left, .tm-right, .cta-left, .cta-in > div:last-child, #process .pr-photo-wrap, #process > .inner > .pr-in > div:last-child, #testimonials .tm-left, #testimonials .tm-right, #faq .faq-right, #faq > .inner > .faq-in > div:first-child');
+revealEls.forEach(function(el){
+  gsap.from(el,{opacity:0,y:40,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%',once:true}});
+});
 
-ScrollTrigger.create({trigger:'#services',start:'top 75%',once:true,onEnter:function(){gsap.from('.sv-row',{opacity:0,x:-20,duration:.6,stagger:.07,ease:'power3.out'});}});
-ScrollTrigger.create({trigger:'#cta',start:'top 80%',once:true,onEnter:function(){gsap.from('.ct-title',{y:40,opacity:0,duration:1,ease:'expo.out'});gsap.from('.ct-form',{y:24,opacity:0,duration:.8,delay:.3,ease:'power3.out'});}});
+// Service rows
+ScrollTrigger.create({trigger:'#services',start:'top 75%',once:true,onEnter:function(){
+  gsap.from('.sv-row',{opacity:0,x:-24,duration:.65,stagger:.08,ease:'power3.out'});
+}});
+
+// Project cards
+ScrollTrigger.create({trigger:'#projects .pj-grid',start:'top 80%',once:true,onEnter:function(){
+  gsap.from('.pj-card',{opacity:0,scale:.95,duration:.7,stagger:.08,ease:'power3.out'});
+}});
+
+// Process steps
+ScrollTrigger.create({trigger:'.pr-steps',start:'top 80%',once:true,onEnter:function(){
+  gsap.from('.pr-step',{opacity:0,y:24,duration:.6,stagger:.1,ease:'power3.out'});
+}});
 </script>
 </body>
 </html>
