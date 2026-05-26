@@ -30,7 +30,7 @@ img{max-width:100%;display:block}
 .logo-icon{width:78px;height:78px;flex-shrink:0}
 .nav-menu{display:flex;align-items:center;list-style:none;gap:0;margin-left:auto}
 .nav-menu>li{position:relative}
-.nav-menu>li>a{display:flex;align-items:center;gap:5px;padding:24px 15px;font-size:13.5px;font-weight:700;color:#333;white-space:nowrap;transition:color .2s}
+.nav-menu>li>a{display:flex;align-items:center;gap:5px;padding:24px 15px;font-size:15px;font-weight:500;color:#333;white-space:nowrap;transition:color .2s;letter-spacing:.1px}
 .nav-menu>li>a:hover,.nav-menu>li.open>a{color:var(--red)}
 .nav-menu>li>a i{font-size:10px;transition:transform .2s}
 .nav-menu>li.open>a i{transform:rotate(180deg)}
@@ -63,6 +63,111 @@ img{max-width:100%;display:block}
 .nav-phone-label{font-size:10.5px;color:#888;font-weight:700;line-height:1}
 .nav-phone-number{font-size:15px;font-weight:800;color:var(--red);line-height:1.4}
 a.nav-phone-number:hover{text-decoration:underline}
+
+/* ── PAY BUTTON ── */
+.btn-pay{display:inline-flex;align-items:center;gap:7px;background:#1a7a3c;color:#fff;font-size:12.5px;font-weight:700;padding:9px 16px;border:none;cursor:pointer;letter-spacing:.4px;text-transform:uppercase;transition:background .2s;margin-left:14px;font-family:inherit;white-space:nowrap}
+.btn-pay:hover{background:#155e2e}
+.btn-pay i{font-size:11px}
+
+/* ── PAYMENT PAGE ── */
+.pay-hero{background:linear-gradient(135deg,#0f1e3c 0%,#1a3160 60%,#1a5276 100%);padding:52px 24px;text-align:center;color:#fff}
+.pay-hero i{font-size:44px;color:#2ecc71;margin-bottom:14px;display:block}
+.pay-hero h1{font-size:clamp(22px,3vw,36px);font-weight:800;margin-bottom:8px}
+.pay-hero p{font-size:15px;color:rgba(255,255,255,.75);max-width:560px;margin:0 auto}
+.pay-trust{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:22px}
+.pay-trust span{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.5px}
+.pay-trust i{color:#2ecc71;font-size:13px}
+.pay-wrap{max-width:1060px;margin:0 auto;padding:44px 24px;display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start}
+.pay-card{background:#fff;border:1px solid #e0e0e0;box-shadow:0 4px 28px rgba(0,0,0,.08);padding:32px}
+.pay-card h2{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:24px;padding-bottom:14px;border-bottom:3px solid var(--red);display:flex;align-items:center;gap:9px}
+.pay-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.pay-field{margin-bottom:14px}
+.pay-field label{display:block;font-size:11.5px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.pay-field input,.pay-field select{width:100%;border:1.5px solid #ddd;padding:12px 14px;font-size:14px;font-family:inherit;color:#333;outline:none;transition:border-color .2s;background:#fff}
+.pay-field input:focus,.pay-field select:focus{border-color:var(--navy)}
+.pay-field input::placeholder{color:#bbb}
+.card-detect{position:relative}
+.card-detect input{padding-right:60px}
+.card-logo{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:22px;color:#aaa;transition:color .2s}
+.pay-expiry-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pay-amount-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.pay-amount-btn{border:2px solid #ddd;background:#fff;padding:10px 8px;font-size:14px;font-weight:700;color:#555;cursor:pointer;transition:all .2s;font-family:inherit;text-align:center}
+.pay-amount-btn:hover,.pay-amount-btn.selected{border-color:var(--navy);color:var(--navy);background:#f0f4ff}
+.pay-divider{display:flex;align-items:center;gap:12px;margin:6px 0 16px;color:#bbb;font-size:12px}
+.pay-divider::before,.pay-divider::after{content:'';flex:1;height:1px;background:#e8e8e8}
+.btn-pay-submit{width:100%;background:#1a7a3c;color:#fff;font-size:15px;font-weight:700;padding:16px;border:none;cursor:pointer;font-family:inherit;letter-spacing:.5px;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s;margin-top:8px}
+.btn-pay-submit:hover{background:#155e2e}
+.pay-disclaimer{font-size:11px;color:#999;text-align:center;margin-top:10px;line-height:1.6}
+.pay-sidebar h3{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.accept-cards{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.card-icon{background:#f5f5f5;border:1px solid #e0e0e0;padding:7px 12px;font-size:11px;font-weight:800;letter-spacing:.5px;color:#333;display:flex;align-items:center;gap:5px;min-width:68px;justify-content:center}
+.card-icon.visa{background:#1a1f71;color:#fff}
+.card-icon.mc{background:#eb001b;color:#fff}
+.card-icon.amex{background:#007bc1;color:#fff}
+.card-icon.disc{background:#f76f20;color:#fff}
+.card-icon.check{background:#555;color:#fff}
+.card-icon.fin{background:var(--navy);color:#fff}
+.security-box{background:#f8fdf9;border:1.5px solid #c3e6cb;padding:16px;margin-bottom:20px}
+.security-box h4{font-size:12px;font-weight:800;color:#1a7a3c;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.security-box p{font-size:12.5px;color:#555;line-height:1.7}
+.pay-contact-box{background:#f5f7ff;border:1.5px solid #d0d9ff;padding:16px}
+.pay-contact-box h4{font-size:12px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.pay-contact-box p{font-size:13px;color:#555;line-height:1.8}
+.pay-contact-box a{color:var(--red);font-weight:700}
+
+/* ── BOOKING PAGE ── */
+.book-hero{background:linear-gradient(135deg,#0f1e3c,#1a3160);padding:50px 24px;text-align:center;color:#fff}
+.book-hero h1{font-size:clamp(22px,3vw,38px);font-weight:800;margin-bottom:10px}
+.book-hero p{font-size:15.5px;color:rgba(255,255,255,.75);max-width:600px;margin:0 auto 20px}
+.book-pills{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.book-pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);font-size:12.5px;font-weight:700;padding:8px 16px;letter-spacing:.3px}
+.book-pill i{color:#fbbf24}
+.book-wrap{max-width:1200px;margin:0 auto;padding:44px 24px;display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:start}
+.book-left h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.book-left .book-sub{font-size:13.5px;color:#777;margin-bottom:24px}
+.svc-select-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
+.svc-opt{border:2px solid #e0e0e0;padding:12px 10px;cursor:pointer;text-align:center;transition:all .2s;background:#fff}
+.svc-opt:hover{border-color:var(--navy);background:#f5f7ff}
+.svc-opt.active{border-color:var(--red);background:#fff5f5}
+.svc-opt i{font-size:18px;color:#999;display:block;margin-bottom:6px;transition:color .2s}
+.svc-opt.active i{color:var(--red)}
+.svc-opt span{font-size:11.5px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.3px}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-header h3{font-size:16px;font-weight:800;color:var(--navy)}
+.cal-nav{width:32px;height:32px;border:1.5px solid #ddd;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:#555;transition:all .15s}
+.cal-nav:hover{border-color:var(--red);color:var(--red)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:20px}
+.cal-day-head{text-align:center;font-size:11px;font-weight:700;color:#999;text-transform:uppercase;padding:6px 0}
+.cal-day{text-align:center;padding:9px 4px;font-size:13.5px;font-weight:600;color:#333;cursor:pointer;transition:all .15s;border:2px solid transparent;background:#fff}
+.cal-day:hover:not(.empty):not(.past){background:#f5f7ff;border-color:var(--navy);color:var(--navy)}
+.cal-day.selected{background:var(--red);color:#fff;border-color:var(--red)}
+.cal-day.today{border-color:#fbbf24;font-weight:800}
+.cal-day.empty,.cal-day.past{color:#ccc;cursor:default;pointer-events:none}
+.cal-day.sunday{color:#e74c3c}
+.cal-day.sunday.past{color:#f5c6c6}
+.time-section{margin-bottom:0}
+.time-section h4{font-size:13px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.time-slot{border:1.5px solid #ddd;padding:9px 6px;text-align:center;font-size:12.5px;font-weight:700;color:#555;cursor:pointer;transition:all .15s;background:#fff}
+.time-slot:hover{border-color:var(--navy);color:var(--navy);background:#f5f7ff}
+.time-slot.selected{background:var(--navy);color:#fff;border-color:var(--navy)}
+.book-right{background:#fff;border:1px solid #e0e0e0;box-shadow:0 4px 24px rgba(0,0,0,.08);padding:28px}
+.book-right h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:20px;padding-bottom:12px;border-bottom:3px solid var(--red)}
+.book-field{margin-bottom:14px}
+.book-field label{display:block;font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.book-field input,.book-field select,.book-field textarea{width:100%;border:1.5px solid #ddd;padding:11px 13px;font-size:13.5px;font-family:inherit;color:#333;outline:none;transition:border-color .2s}
+.book-field input:focus,.book-field select:focus,.book-field textarea:focus{border-color:var(--navy)}
+.book-summary{background:#f5f7ff;border:1.5px solid #d0d9ff;padding:14px;margin-bottom:16px;font-size:13px;color:#555;line-height:1.9}
+.book-summary strong{color:var(--navy)}
+.btn-book-submit{width:100%;background:var(--red);color:#fff;font-size:15px;font-weight:700;padding:15px;border:none;cursor:pointer;font-family:inherit;letter-spacing:.5px;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .2s}
+.btn-book-submit:hover{background:#a93226}
+.what-expect{margin-top:32px;border-top:2px solid #f0f0f0;padding-top:28px}
+.what-expect h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:18px}
+.expect-steps{display:flex;flex-direction:column;gap:16px}
+.expect-step{display:flex;gap:16px;align-items:flex-start}
+.step-num{width:34px;height:34px;background:var(--red);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-content h4{font-size:14px;font-weight:700;color:#333;margin-bottom:3px}
+.step-content p{font-size:13px;color:#666;line-height:1.6}
 
 /* ── HERO ── */
 .hero{position:relative;min-height:calc(100vh - 116px);background:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;display:flex;align-items:center}
@@ -403,9 +508,11 @@ footer h4{font-size:14px;font-weight:800;color:var(--red);margin-bottom:14px;let
       </li>
 
       <li><a href="#" onclick="showPage('contact');return false">Contact Us</a></li>
+      <li><a href="#" onclick="showPage('booking');return false" style="color:var(--red);font-weight:700">Book Appointment</a></li>
     </ul>
 
     <div class="nav-right">
+      <button class="btn-pay" onclick="showPage('payment')"><i class="fas fa-lock"></i> Pay Online</button>
       <div class="nav-phone">
         <div class="nav-phone-icon"><i class="fas fa-phone"></i></div>
         <div>
@@ -850,6 +957,262 @@ footer h4{font-size:14px;font-weight:800;color:var(--red);margin-bottom:14px;let
   </div>
 </div><!-- /page-service -->
 
+<!-- ═══════════════ PAGE: PAYMENT ═══════════════ -->
+<div id="page-payment" class="page">
+  <div class="pay-hero">
+    <i class="fas fa-shield-halved"></i>
+    <h1>Secure Online Payment</h1>
+    <p>Pay your invoice, deposit, or balance quickly and securely. All transactions are encrypted with 256-bit SSL.</p>
+    <div class="pay-trust">
+      <span><i class="fas fa-lock"></i> 256-bit SSL</span>
+      <span><i class="fas fa-check-circle"></i> PCI Compliant</span>
+      <span><i class="fas fa-check-circle"></i> Encrypted</span>
+      <span><i class="fas fa-check-circle"></i> No Data Stored</span>
+    </div>
+  </div>
+  <div class="breadcrumb"><a href="#" onclick="showPage('home')">Home</a><span>/</span> Secure Payment</div>
+
+  <div class="pay-wrap">
+    <div>
+      <div class="pay-card">
+        <h2><i class="fas fa-credit-card"></i> Payment Details</h2>
+
+        <p style="font-size:13px;color:#777;margin-bottom:18px">Select a preset amount or enter a custom amount from your invoice.</p>
+        <div class="pay-amount-row">
+          <button class="pay-amount-btn" onclick="selectAmount(this,'500')">$500</button>
+          <button class="pay-amount-btn" onclick="selectAmount(this,'1000')">$1,000</button>
+          <button class="pay-amount-btn" onclick="selectAmount(this,'2500')">$2,500</button>
+          <button class="pay-amount-btn" onclick="selectAmount(this,'5000')">$5,000</button>
+          <button class="pay-amount-btn" onclick="selectAmount(this,'7500')">$7,500</button>
+          <button class="pay-amount-btn" onclick="selectAmount(this,'10000')">$10,000</button>
+        </div>
+        <div class="pay-divider">or enter custom amount</div>
+        <div class="pay-field">
+          <label>Payment Amount *</label>
+          <input type="text" id="payAmount" placeholder="$0.00" oninput="formatAmount(this)">
+        </div>
+
+        <div class="pay-field">
+          <label>Invoice / Job Number</label>
+          <input type="text" placeholder="e.g. INV-2026-0042">
+        </div>
+
+        <div class="pay-field">
+          <label>Name on Card *</label>
+          <input type="text" placeholder="Full name as shown on card">
+        </div>
+
+        <div class="pay-field card-detect">
+          <label>Card Number *</label>
+          <input type="text" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)" autocomplete="cc-number">
+          <span class="card-logo" id="cardLogo"><i class="fas fa-credit-card"></i></span>
+        </div>
+
+        <div class="pay-expiry-row">
+          <div class="pay-field">
+            <label>Expiry Date *</label>
+            <input type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" autocomplete="cc-exp">
+          </div>
+          <div class="pay-field">
+            <label>CVV / Security Code *</label>
+            <input type="text" placeholder="3 or 4 digits" maxlength="4" autocomplete="cc-csc">
+          </div>
+        </div>
+
+        <div style="margin:18px 0 14px;padding-top:18px;border-top:1px solid #f0f0f0">
+          <p style="font-size:12px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px">Billing Address</p>
+        </div>
+        <div class="pay-row">
+          <div class="pay-field">
+            <label>First Name *</label>
+            <input type="text" placeholder="First name">
+          </div>
+          <div class="pay-field">
+            <label>Last Name *</label>
+            <input type="text" placeholder="Last name">
+          </div>
+        </div>
+        <div class="pay-field">
+          <label>Street Address *</label>
+          <input type="text" placeholder="123 Main Street">
+        </div>
+        <div class="pay-row">
+          <div class="pay-field">
+            <label>City *</label>
+            <input type="text" placeholder="Fort Lauderdale">
+          </div>
+          <div class="pay-field">
+            <label>Zip Code *</label>
+            <input type="text" placeholder="33306" maxlength="5">
+          </div>
+        </div>
+        <div class="pay-field">
+          <label>Email (receipt will be sent here) *</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="pay-field">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(954) 000-0000">
+        </div>
+
+        <button class="btn-pay-submit" onclick="submitPayment()">
+          <i class="fas fa-lock"></i> Pay Securely Now
+        </button>
+        <p class="pay-disclaimer">Your payment is protected by 256-bit SSL encryption. Summit Roofing &amp; Exteriors does not store your card information. By submitting you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+
+    <div class="pay-sidebar">
+      <h3>We Accept</h3>
+      <div class="accept-cards">
+        <div class="card-icon visa"><i class="fab fa-cc-visa" style="font-size:20px"></i> VISA</div>
+        <div class="card-icon mc"><i class="fab fa-cc-mastercard" style="font-size:20px"></i> MC</div>
+        <div class="card-icon amex"><i class="fab fa-cc-amex" style="font-size:20px"></i> AMEX</div>
+        <div class="card-icon disc"><i class="fab fa-cc-discover" style="font-size:20px"></i> DISC</div>
+        <div class="card-icon check"><i class="fas fa-money-check"></i> CHECK</div>
+        <div class="card-icon fin"><i class="fas fa-hand-holding-dollar"></i> FINANCE</div>
+      </div>
+
+      <div class="security-box">
+        <h4><i class="fas fa-shield-halved"></i> Your Security</h4>
+        <p>All payments are processed through a PCI DSS Level 1 certified payment processor. Your card information is encrypted in transit and never stored on our servers. Transactions are protected by fraud monitoring and 3D Secure authentication.</p>
+      </div>
+
+      <div class="pay-contact-box">
+        <h4><i class="fas fa-headset"></i> Questions About Your Invoice?</h4>
+        <p>
+          Call us: <a href="tel:9547752057">(954) 775-2057</a><br>
+          Mon–Fri: 8:00am – 6:00pm<br>
+          Saturday: 9:00am – 2:00pm<br>
+          Email: <a href="mailto:info@summitroofingfl.com">info@summitroofingfl.com</a>
+        </p>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e0e0e0;padding:16px;margin-top:16px">
+        <p style="font-size:11.5px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Financing Available</p>
+        <p style="font-size:13px;color:#666;line-height:1.75">Need to spread out your payments? Ask about our 0% financing options — from 12 to 120 months with fast approval.</p>
+        <button class="btn-red" style="margin-top:12px;font-size:13px;padding:10px 18px" onclick="showServicePage('finance')">Learn About Financing</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-payment -->
+
+<!-- ═══════════════ PAGE: BOOKING ═══════════════ -->
+<div id="page-booking" class="page">
+  <div class="book-hero">
+    <h1>Book Your Free Appointment</h1>
+    <p>Schedule a free no-obligation roof inspection or consultation with a Summit Roofing specialist at a time that works for you.</p>
+    <div class="book-pills">
+      <span class="book-pill"><i class="fas fa-check"></i> No Obligation</span>
+      <span class="book-pill"><i class="fas fa-check"></i> Free Inspection Included</span>
+      <span class="book-pill"><i class="fas fa-check"></i> Same-Week Availability</span>
+      <span class="book-pill"><i class="fas fa-check"></i> Certified Specialists Only</span>
+    </div>
+  </div>
+  <div class="breadcrumb"><a href="#" onclick="showPage('home')">Home</a><span>/</span> Book Appointment</div>
+
+  <div class="book-wrap">
+    <div class="book-left">
+      <h2>Choose Your Service</h2>
+      <p class="book-sub">Select what you need — we'll match you with the right specialist.</p>
+      <div class="svc-select-grid">
+        <div class="svc-opt active" onclick="selectService(this,'Residential Roof Inspection')"><i class="fas fa-house"></i><span>Roof Inspection</span></div>
+        <div class="svc-opt" onclick="selectService(this,'Residential Roof Replacement')"><i class="fas fa-hammer"></i><span>Roof Replacement</span></div>
+        <div class="svc-opt" onclick="selectService(this,'Roof Repair')"><i class="fas fa-wrench"></i><span>Roof Repair</span></div>
+        <div class="svc-opt" onclick="selectService(this,'Storm Damage Assessment')"><i class="fas fa-cloud-bolt"></i><span>Storm Damage</span></div>
+        <div class="svc-opt" onclick="selectService(this,'Commercial Roofing')"><i class="fas fa-building"></i><span>Commercial</span></div>
+        <div class="svc-opt" onclick="selectService(this,'Free Estimate (General)')"><i class="fas fa-file-invoice-dollar"></i><span>Free Estimate</span></div>
+      </div>
+
+      <h2>Pick a Date</h2>
+      <p class="book-sub">Available Monday – Saturday. Select a date to see time slots.</p>
+      <div class="cal-header">
+        <button class="cal-nav" onclick="calPrev()"><i class="fas fa-chevron-left"></i></button>
+        <h3 id="calTitle"></h3>
+        <button class="cal-nav" onclick="calNext()"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+
+      <div id="timeSection" style="display:none">
+        <div class="time-section">
+          <h4><i class="fas fa-sun" style="color:#fbbf24;margin-right:6px"></i>Morning</h4>
+          <div class="time-grid" id="amSlots"></div>
+        </div>
+        <div class="time-section" style="margin-top:18px">
+          <h4><i class="fas fa-cloud-sun" style="color:#f97316;margin-right:6px"></i>Afternoon</h4>
+          <div class="time-grid" id="pmSlots"></div>
+        </div>
+      </div>
+
+      <div class="what-expect">
+        <h3>What to Expect</h3>
+        <div class="expect-steps">
+          <div class="expect-step"><div class="step-num">1</div><div class="step-content"><h4>We Confirm Your Appointment</h4><p>Within 30 minutes of booking, a team member calls to confirm your appointment time and answer any initial questions.</p></div></div>
+          <div class="expect-step"><div class="step-num">2</div><div class="step-content"><h4>Our Specialist Arrives On Time</h4><p>A certified Summit Roofing specialist arrives at your property within the scheduled window — never late, always in uniform.</p></div></div>
+          <div class="expect-step"><div class="step-num">3</div><div class="step-content"><h4>Full Inspection &amp; Honest Assessment</h4><p>We inspect your roof thoroughly — on the roof, not from the driveway. We document everything with photos and give you a clear, honest report.</p></div></div>
+          <div class="expect-step"><div class="step-num">4</div><div class="step-content"><h4>Written Estimate — No Pressure</h4><p>You receive a detailed written estimate with all options and pricing. We answer your questions and let you decide — zero sales pressure, ever.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="book-right">
+        <h3><i class="fas fa-calendar-check" style="color:var(--red);margin-right:8px"></i>Your Appointment</h3>
+        <div class="book-summary" id="bookSummary">
+          <strong>Service:</strong> Residential Roof Inspection<br>
+          <strong>Date:</strong> <span id="sumDate">Not selected</span><br>
+          <strong>Time:</strong> <span id="sumTime">Not selected</span>
+        </div>
+        <div class="book-field">
+          <label>First Name *</label>
+          <input type="text" placeholder="First name">
+        </div>
+        <div class="book-field">
+          <label>Last Name *</label>
+          <input type="text" placeholder="Last name">
+        </div>
+        <div class="book-field">
+          <label>Phone Number *</label>
+          <input type="tel" placeholder="(954) 000-0000">
+        </div>
+        <div class="book-field">
+          <label>Email Address *</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="book-field">
+          <label>Property Address *</label>
+          <input type="text" placeholder="123 Main Street, Fort Lauderdale">
+        </div>
+        <div class="book-field">
+          <label>Property Type</label>
+          <select>
+            <option>Single Family Home</option>
+            <option>Townhouse / Villa</option>
+            <option>Condo / Multi-Unit</option>
+            <option>Commercial Building</option>
+          </select>
+        </div>
+        <div class="book-field">
+          <label>Additional Notes</label>
+          <textarea rows="3" placeholder="Describe any specific concerns, recent leaks, storm damage, etc."></textarea>
+        </div>
+        <button class="btn-book-submit" onclick="submitBooking()">
+          <i class="fas fa-calendar-check"></i> Confirm Appointment
+        </button>
+        <p style="font-size:11.5px;color:#999;text-align:center;margin-top:10px;line-height:1.6">
+          By submitting you agree to receive a confirmation call from Summit Roofing. Msg &amp; data rates may apply.
+        </p>
+      </div>
+
+      <div style="background:#fff5f5;border:1.5px solid #f5c6c6;padding:18px;margin-top:16px">
+        <p style="font-size:13px;font-weight:800;color:var(--red);margin-bottom:6px"><i class="fas fa-bolt"></i> Emergency? Don't Wait.</p>
+        <p style="font-size:13px;color:#555;line-height:1.7">For active leaks or storm damage, call us directly for same-day emergency response.</p>
+        <a href="tel:9547752057" style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:15px;font-weight:800;color:var(--red)"><i class="fas fa-phone"></i> (954) 775-2057</a>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-booking -->
+
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="ft-top">
@@ -1114,6 +1477,102 @@ document.addEventListener('click', function(e) {
     document.querySelectorAll('.nav-menu>li').forEach(li => li.classList.remove('open'));
   }
 });
+
+// ── PAYMENT JS ──
+function selectAmount(btn, val) {
+  document.querySelectorAll('.pay-amount-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('payAmount').value = '$' + Number(val).toLocaleString('en-US', {minimumFractionDigits:2});
+}
+function formatAmount(input) {
+  let v = input.value.replace(/[^0-9.]/g,'');
+  if (v) input.value = '$' + parseFloat(v || 0).toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function formatCard(input) {
+  let v = input.value.replace(/\D/g,'').substring(0,16);
+  input.value = v.replace(/(.{4})/g,'$1 ').trim();
+  const logo = document.getElementById('cardLogo');
+  if (/^4/.test(v)) logo.innerHTML='<i class="fab fa-cc-visa" style="color:#1a1f71"></i>';
+  else if (/^5[1-5]/.test(v)||/^2[2-7]/.test(v)) logo.innerHTML='<i class="fab fa-cc-mastercard" style="color:#eb001b"></i>';
+  else if (/^3[47]/.test(v)) logo.innerHTML='<i class="fab fa-cc-amex" style="color:#007bc1"></i>';
+  else if (/^6011|^65/.test(v)) logo.innerHTML='<i class="fab fa-cc-discover" style="color:#f76f20"></i>';
+  else logo.innerHTML='<i class="fas fa-credit-card" style="color:#aaa"></i>';
+}
+function formatExpiry(input) {
+  let v = input.value.replace(/\D/g,'').substring(0,4);
+  if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2);
+  input.value = v;
+}
+function submitPayment() {
+  const amount = document.getElementById('payAmount').value;
+  if (!amount || amount === '$0.00') { alert('Please enter or select a payment amount.'); return; }
+  alert('Thank you! Your payment of ' + amount + ' has been submitted. A confirmation receipt will be emailed to you shortly.\n\nFor questions call (954) 775-2057.');
+}
+
+// ── CALENDAR JS ──
+let calDate = new Date(); calDate.setDate(1);
+let selectedDate = null, selectedTime = null, selectedSvc = 'Residential Roof Inspection';
+const amTimes = ['8:00 AM','9:00 AM','10:00 AM','11:00 AM'];
+const pmTimes = ['12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM'];
+
+function renderCal() {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const y = calDate.getFullYear(), m = calDate.getMonth();
+  document.getElementById('calTitle').textContent = months[m] + ' ' + y;
+  const grid = document.getElementById('calGrid');
+  const heads = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  let html = heads.map(d => '<div class="cal-day-head">'+d+'</div>').join('');
+  const first = new Date(y,m,1).getDay();
+  const days = new Date(y,m+1,0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+  for(let i=0;i<first;i++) html += '<div class="cal-day empty"></div>';
+  for(let d=1;d<=days;d++){
+    const thisDate = new Date(y,m,d); thisDate.setHours(0,0,0,0);
+    const isSun = thisDate.getDay()===0;
+    const isPast = thisDate < today;
+    const isToday = thisDate.getTime()===today.getTime();
+    const isSel = selectedDate && thisDate.getTime()===selectedDate.getTime();
+    let cls = 'cal-day';
+    if(isSun) cls+=' sunday';
+    if(isPast) cls+=' past';
+    if(isToday) cls+=' today';
+    if(isSel) cls+=' selected';
+    const disabled = isPast||isSun ? '' : `onclick="selectDate(new Date(${y},${m},${d}))"`;
+    html += `<div class="${cls}" ${disabled}>${d}</div>`;
+  }
+  grid.innerHTML = html;
+}
+function selectDate(d) {
+  selectedDate = d; selectedTime = null;
+  document.getElementById('sumDate').textContent = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('sumTime').textContent = 'Not selected';
+  renderCal();
+  const ts = document.getElementById('timeSection');
+  ts.style.display = 'block';
+  document.getElementById('amSlots').innerHTML = amTimes.map(t=>`<div class="time-slot" onclick="selectTime(this,'${t}')">${t}</div>`).join('');
+  document.getElementById('pmSlots').innerHTML = pmTimes.map(t=>`<div class="time-slot" onclick="selectTime(this,'${t}')">${t}</div>`).join('');
+}
+function selectTime(el, t) {
+  document.querySelectorAll('.time-slot').forEach(s=>s.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTime = t;
+  document.getElementById('sumTime').textContent = t;
+}
+function selectService(el, svc) {
+  document.querySelectorAll('.svc-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  selectedSvc = svc;
+  document.getElementById('bookSummary').innerHTML = `<strong>Service:</strong> ${svc}<br><strong>Date:</strong> <span id="sumDate">${selectedDate ? selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : 'Not selected'}</span><br><strong>Time:</strong> <span id="sumTime">${selectedTime || 'Not selected'}</span>`;
+}
+function calPrev() { calDate.setMonth(calDate.getMonth()-1); renderCal(); }
+function calNext() { calDate.setMonth(calDate.getMonth()+1); renderCal(); }
+function submitBooking() {
+  if (!selectedDate) { alert('Please select a date for your appointment.'); return; }
+  if (!selectedTime) { alert('Please select a time slot.'); return; }
+  const d = selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  alert(`Your appointment is confirmed!\n\nService: ${selectedSvc}\nDate: ${d}\nTime: ${selectedTime}\n\nA Summit Roofing specialist will call to confirm within 30 minutes.\n\nQuestions? Call (954) 775-2057`);
+}
+document.addEventListener('DOMContentLoaded', renderCal);
 
 function scrollToSection(id) {
   const el = document.getElementById(id);
