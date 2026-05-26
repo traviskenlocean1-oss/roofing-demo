@@ -231,6 +231,18 @@ a.nav-phone-number:hover{text-decoration:underline}
 .svc-title{font-size:clamp(20px,2.8vw,34px);font-weight:800;color:var(--red);line-height:1.2;margin-bottom:44px}
 .svc-cat{margin-bottom:44px}
 .svc-cat-title{font-size:13.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#333;margin-bottom:5px}
+/* ── SERVICE IMAGE BREAK ── */
+.svc-image-break{position:relative;min-height:440px;background:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat fixed;display:flex;align-items:center;justify-content:center;margin:60px 0 0}
+.sib-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,20,50,.82) 0%,rgba(26,49,96,.72) 100%)}
+.sib-content{position:relative;z-index:1;text-align:center;padding:60px 24px;max-width:860px}
+.sib-eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#fbbf24;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:8px}
+.sib-headline{font-size:clamp(30px,4.5vw,56px);font-weight:800;color:#fff;line-height:1.12;margin-bottom:18px;letter-spacing:-.5px}
+.sib-sub{font-size:16.5px;color:rgba(255,255,255,.78);line-height:1.7;max-width:640px;margin:0 auto 36px}
+.sib-stats{display:flex;justify-content:center;gap:0;margin-bottom:36px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);backdrop-filter:blur(4px);max-width:500px;margin-left:auto;margin-right:auto;margin-bottom:36px}
+.sib-stat{flex:1;padding:18px 10px;border-right:1px solid rgba(255,255,255,.12);text-align:center}
+.sib-stat:last-child{border-right:none}
+.sib-num{display:block;font-size:28px;font-weight:800;color:#fff;line-height:1.1}
+.sib-label{display:block;font-size:11px;font-weight:600;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
 .cat-line{width:38px;height:3px;background:var(--red);margin-bottom:20px}
 .cards-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -637,6 +649,22 @@ footer h4{font-size:14px;font-weight:800;color:var(--red);margin-bottom:14px;let
             <h3>Residential Roof Maintenance</h3>
             <p>Our Roof Tune-Up maintenance program ensures your roof stays safe and functioning at peak performance for years to come. During our tune-ups, we check for seal leaks and needed repairs — not only to keep your roof in prime working condition but to also extend its life significantly.</p>
           </div>
+        </div>
+      </div>
+
+      <!-- ── MID-PAGE IMAGE BREAK ── -->
+      <div class="svc-image-break">
+        <div class="sib-overlay"></div>
+        <div class="sib-content">
+          <p class="sib-eyebrow"><i class="fas fa-star"></i> Certified Master Elite Contractor</p>
+          <h2 class="sib-headline">Built to Last.<br>Backed by the Best.</h2>
+          <p class="sib-sub">From asphalt shingles to standing seam metal — every Summit roof is installed to manufacturer spec, inspected before we leave, and warranted for decades.</p>
+          <div class="sib-stats">
+            <div class="sib-stat"><span class="sib-num">5,000+</span><span class="sib-label">Roofs Installed</span></div>
+            <div class="sib-stat"><span class="sib-num">15+</span><span class="sib-label">Years in South Florida</span></div>
+            <div class="sib-stat"><span class="sib-num">4.9★</span><span class="sib-label">Google Rating</span></div>
+          </div>
+          <button class="btn-red" onclick="showPage('contact')" style="font-size:14.5px;padding:14px 32px">Get Your Free Estimate &nbsp;<i class="fas fa-arrow-right"></i></button>
         </div>
       </div>
 
