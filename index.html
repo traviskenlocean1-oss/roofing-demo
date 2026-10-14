@@ -395,6 +395,27 @@ footer h4{font-size:14px;font-weight:800;color:var(--red);margin-bottom:14px;let
   .cf-row,.cb-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
   .hero-badges{display:none}
+  .nav-phone{padding-left:10px;margin-left:6px;gap:6px}
+  .nav-phone-icon{width:30px;height:30px;font-size:12px}
+  .nav-phone-label{display:none}
+  .nav-phone-number{display:none}
+  .nav-phone-icon{width:38px;height:38px}
+  .btn-pay{padding:8px 10px;margin-left:8px;font-size:11.5px}
+}
+
+/* mobile menu */
+.nav-burger{display:none;width:42px;height:42px;margin-left:8px;border:0;background:none;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;flex-shrink:0}
+.nav-burger span{display:block;width:22px;height:2px;background:#1a1a1a;transition:transform .25s,opacity .25s}
+.nav-burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.nav-burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:960px){
+  .nav-burger{display:flex}
+  .navbar.menu-open .nav-menu{display:flex;flex-direction:column;align-items:stretch;position:absolute;left:0;right:0;top:100%;background:#fff;box-shadow:0 14px 30px rgba(0,0,0,.15);padding:8px 0;max-height:calc(100vh - 110px);overflow-y:auto;z-index:2000}
+  .navbar.menu-open .nav-menu>li{border-bottom:1px solid #eee}
+  .navbar.menu-open .nav-menu>li>a{padding:16px 24px;display:flex;justify-content:space-between}
+  .navbar.menu-open .mega,.navbar.menu-open .dropdown{position:static;width:auto;display:none;box-shadow:none;border-top:0;opacity:1;visibility:visible;transform:none;grid-template-columns:1fr;padding:0 24px 12px}
+  .navbar.menu-open .nav-menu>li.open .mega,.navbar.menu-open .nav-menu>li.open .dropdown{display:block}
 }
 </style>
 </head>
@@ -528,14 +549,15 @@ footer h4{font-size:14px;font-weight:800;color:var(--red);margin-bottom:14px;let
     <div class="nav-right">
       <button class="btn-pay" onclick="showPage('payment')"><i class="fas fa-lock"></i> Pay Online</button>
       <div class="nav-phone">
-        <div class="nav-phone-icon"><i class="fas fa-phone"></i></div>
+        <a href="tel:9547752057" class="nav-phone-icon" aria-label="Call (954) 775-2057"><i class="fas fa-phone"></i></a>
         <div>
           <div class="nav-phone-label">Free Consultation</div>
           <a href="tel:9547752057" class="nav-phone-number">(954) 775-2057</a>
         </div>
       </div>
     </div>
-  </div>
+  <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" onclick="var n=this.closest('.navbar'),o=n.classList.toggle('menu-open');this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close menu':'Open menu')"><span></span><span></span><span></span></button>
+    </div>
 </nav>
 
 <!-- ═══════════════ PAGE: HOME ═══════════════ -->
@@ -1495,6 +1517,7 @@ const serviceData = {
 };
 
 function showServicePage(key) {
+  var nb0=document.querySelector('.navbar');if(nb0){nb0.classList.remove('menu-open');var b0=nb0.querySelector('.nav-burger');if(b0)b0.setAttribute('aria-expanded','false');}
   const data = serviceData[key] || serviceData['res-replace'];
   document.getElementById('svcHero').style.backgroundImage = "url('" + data.hero + "')";
   document.getElementById('svcHeroTitle').textContent = data.heroTitle;
@@ -1626,6 +1649,11 @@ function scrollToSection(id) {
   if (heads.length) heads[0].scrollIntoView({behavior:'smooth'});
   else { const wrap = document.querySelector('.svc-pg-wrap'); if(wrap) wrap.scrollIntoView({behavior:'smooth'}); }
 }
+</script>
+
+<script>
+/* mobile menu: any real page link closes it (section toggles keep it open) */
+document.addEventListener("click",function(e){var a=e.target.closest(".nav-menu a");if(!a)return;if((a.getAttribute("onclick")||"").indexOf("toggleNav")>-1)return;var nb=document.querySelector(".navbar");if(nb){nb.classList.remove("menu-open");var b=nb.querySelector(".nav-burger");if(b)b.setAttribute("aria-expanded","false");}});
 </script>
 </body>
 </html>
